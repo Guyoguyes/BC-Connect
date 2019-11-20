@@ -5,3 +5,10 @@
     height: 100px;
     margin-top: -10.72px;
 }
+.hero{
+    background-image: url('../img/background2.jpeg');
+    background-position: center;
+    background-size: cover;
+    height: 1150px;
+    margin-top: -10px;
+}
