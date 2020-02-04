@@ -19,8 +19,13 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "chalk": "^3.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "font-awesome": "^4.7.0",
+    "mongoose": "^5.8.11",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -45,5 +50,17 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guyoguyes/Safiree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guyoguyes/Safiree/issues"
+  },
+  "homepage": "https://github.com/Guyoguyes/Safiree#readme"
 }
