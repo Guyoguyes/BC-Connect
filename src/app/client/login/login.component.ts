@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSetting } from 'src/app/user-setting';
+import { DataService } from 'src/app/data/data.service';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +19,17 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form: Ngform){
+    console.log('in onSubmit' , form.valid);
+    this.dataService.postUserSettingsForms(this.userSetting).subscribe();
+    result => console.log('success: ', result);
+    error => console.log('error', error)
+
   }
 
 }
