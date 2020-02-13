@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form: Ngform){
+  onSubmit(form){
     console.log('in onSubmit' , form.valid);
     this.dataService.postUserSettingsForms(this.userSetting).subscribe();
     result => console.log('success: ', result);
