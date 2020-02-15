@@ -18,10 +18,19 @@ mongoose.connection.on('connected', ()=>{
 //error connecting
 mongoose.connection.on('error', (err) =>{
   console.log('Database Error: '+err)
-})
+});
 
 const app = express();
 const port = 3000;
+
+//middleware
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+//import client route
+const clientRoute = require('./routes/client.route');
+app.use('/client', clientRoute)
 
 //Route
 app.get('/', (req, res) =>{

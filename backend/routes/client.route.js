@@ -1,9 +1,10 @@
 const express = require('express');
 const route = express.Router();
+const bcrypt = require('bcrypt')
 
 
 // import the client model and schema
-const Client = require('../model/client ');
+const Client = require('../model/client');
 
 //register client
 route.post('/register-client', (req, res) =>{
@@ -22,5 +23,18 @@ route.post('/register-client', (req, res) =>{
             console.log('client registered')
             res.json({success: true, msg:'Client registered successful'})
         }
-    })
-})
+
+        bcrypt.genSalt(10, function(err, salt){
+            bcrypt.hash(newClient.password, salt,(err, hash) =>{
+                if(err) throw err;
+                newClient.password = hash;
+            })
+        })
+    });
+
+
+});
+
+
+//export client route;
+module.exports = route;
