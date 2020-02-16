@@ -35,6 +35,8 @@ route.post('/register-client', (req, res) =>{
 
 });
 
+//login user
+
 
 //export client route;
 module.exports = route;
