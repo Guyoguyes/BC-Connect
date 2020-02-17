@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   angForm: FormGroup
 
   constructor(private fb: FormBuilder, private rs: RegisterService) {
-    this.createForm
+    this.createForm();
   }
 
   createForm(){
