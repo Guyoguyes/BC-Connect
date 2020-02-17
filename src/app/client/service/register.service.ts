@@ -13,3 +13,16 @@ uri = 'http://localhost:3000/client';
 }
 
 //register client
+addClient(first_name, last_name, email, mobile, city, password){
+  const obj = {
+    first_name: first_name,
+    last_name: last_name,
+    email: email,
+    mobile: mobile,
+    city: city,
+    password: password
+  }
+  console.log(obj);
+  this.http.post(`${this.uri}/register-client`, obj)
+      .subscribe(res => console.log('done'))
+}

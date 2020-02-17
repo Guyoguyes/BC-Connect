@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserSetting } from 'src/app/user-setting';
-import { DataService } from 'src/app/data/data.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -9,27 +9,14 @@ import { DataService } from 'src/app/data/data.service';
 })
 export class LoginComponent implements OnInit {
 
-  originaluserSetting: UserSetting = {
-    email: 'guyo',
-    password:'dfghjk'
-  }
-
-  //spread operator ...
-  userSetting: UserSetting = {...this.originaluserSetting};
 
 
 
-  constructor(private dataService: DataService) { }
+
+  constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit(form){
-    console.log('in onSubmit' , form.valid);
-    this.dataService.postUserSettingsForms(this.userSetting).subscribe();
-    result => console.log('success: ', result);
-    error => console.log('error', error)
-
-  }
-
+  
 }
