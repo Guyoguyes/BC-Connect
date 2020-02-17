@@ -24,12 +24,12 @@ route.post('/register-client', (req, res) =>{
             res.json({success: true, msg:'Client registered successful'})
         }
 
-        bcrypt.genSalt(10, function(err, salt){
-            bcrypt.hash(newClient.password, salt,(err, hash) =>{
-                if(err) throw err;
-                newClient.password = hash;
-            })
-        })
+        // bcrypt.genSalt(10, function(err, salt){
+        //     bcrypt.hash(newClient.password, salt,(err, hash) =>{
+        //         if(err) throw err;
+        //         newClient.password = hash;
+        //     })
+        // })
     });
 
 
