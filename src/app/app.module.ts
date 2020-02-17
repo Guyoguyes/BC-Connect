@@ -13,6 +13,7 @@ import { RegisterComponent } from './client/register/register.component';
 import { RecoverComponent } from './client/recover/recover.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './servicepro/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterComponent,
     RecoverComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
