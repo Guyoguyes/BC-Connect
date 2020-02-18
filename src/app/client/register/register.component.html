@@ -21,19 +21,20 @@
 
 <!-- Phone number -->
 <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" formControlName="mobile" #mobile>
+<small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+  Optional - for two step authentication
+</small>
 
   <!-- City -->
   <input type="address" id="defaultRegisterFormCity" class="form-control mb-4" placeholder="Address" formControlName="city" #city>
   <!-- Password -->
   <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="password" #password>
   <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-      At least 8 characters and 1 digit
-  </small>
+    At least 8 characters and 1 digit
+</small>
 
 
-  <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-      Optional - for two step authentication
-  </small>
+
 
   <!-- Newsletter -->
   <!-- <div class="custom-control custom-checkbox">

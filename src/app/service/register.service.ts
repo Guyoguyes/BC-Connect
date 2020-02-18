@@ -24,4 +24,20 @@ uri = 'http://localhost:3000';
     this.http.post(`${this.uri}/client/register-client`, obj)
         .subscribe(res => console.log('done'))
   }
+
+  //Add service provider
+  addService(first_name, last_name, email, mobile, city, service, password){
+    const obj = {
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      mobile: mobile,
+      city: city,
+      service: service,
+      password: password
+    };
+    console.log(obj);
+    this.http.post(`${this.uri}/servicer/register-service-provider`, obj)
+        .subscribe(res => console.log('done'))
+  }
 }
