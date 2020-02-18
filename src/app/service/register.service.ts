@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterService {
 
-uri = 'http://localhost:3000/client';
+uri = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
-  //Add Business
+  //Add client
   addClient(first_name, last_name, email, mobile, city, password){
     const obj = {
       first_name: first_name,
@@ -21,7 +21,7 @@ uri = 'http://localhost:3000/client';
       password: password
     };
     console.log(obj);
-    this.http.post(`${this.uri}/register-client`, obj)
+    this.http.post(`${this.uri}/client/register-client`, obj)
         .subscribe(res => console.log('done'))
   }
 }

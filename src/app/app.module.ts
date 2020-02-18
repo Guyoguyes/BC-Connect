@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterService } from './client/service/register.service';
+import { RegisterService } from './service/register.service';
 
 
 import { AppRoutingModule } from './app-routing.module';

@@ -30,7 +30,12 @@ app.use(bodyParser.json());
 
 //import client route
 const clientRoute = require('./routes/client.route');
-app.use('/client', clientRoute)
+//import service provider route
+const serviceprovider = require('./routes/servicer.route');
+
+app.use('/client', clientRoute);
+
+app.use('/servicer', serviceprovider)
 
 //Route
 app.get('/', (req, res) =>{
