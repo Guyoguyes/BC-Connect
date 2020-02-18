@@ -13,7 +13,11 @@ import { RegisterComponent } from './client/register/register.component';
 import { RecoverComponent } from './client/recover/recover.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './servicepro/profile/profile.component';
+import { MainRegisterComponent } from './main-register/main-register.component';
+import { MainLoginComponent } from './main-login/main-login.component';
+import { RegComponent } from './servicepro/reg/reg.component';
+import { LogComponent } from './servicepro/logi/log.component';
+import { ProComponent } from './servicepro/pro/pro.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { ProfileComponent } from './servicepro/profile/profile.component';
     RecoverComponent,
     HomeComponent,
     NavbarComponent,
-    ProfileComponent
+    MainRegisterComponent,
+    MainLoginComponent,
+    RegComponent,
+    LogComponent,
+    ProComponent
   ],
   imports: [
     BrowserModule,
