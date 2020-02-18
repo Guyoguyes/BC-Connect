@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "mongoose": "^5.8.11",
+    "nodemon": "^2.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
