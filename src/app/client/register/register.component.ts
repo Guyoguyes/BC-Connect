@@ -9,7 +9,7 @@ import { RegisterService } from '../../service/register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  angForm: FormGroup
+  angForm: FormGroup;
 
   constructor(private fb: FormBuilder, private rs: RegisterService) {
     this.createForm();
@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       mobile: ['', Validators.required],
       city: ['', Validators.required],
-      password:['', Validators.required]
-    })
+      password: ['', Validators.required]
+    });
   }
 
   addClient(first_name, last_name, email, mobile, city, password){

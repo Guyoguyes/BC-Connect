@@ -22,7 +22,7 @@ uri = 'http://localhost:3000';
     };
     console.log(obj);
     this.http.post(`${this.uri}/client/register-client`, obj)
-        .subscribe(res => console.log('done'))
+        .subscribe(res => alert('Client registered Successfully'))
   }
 
   //Add service provider
@@ -38,6 +38,6 @@ uri = 'http://localhost:3000';
     };
     console.log(obj);
     this.http.post(`${this.uri}/servicer/register-service-provider`, obj)
-        .subscribe(res => console.log('done'))
+        .subscribe(res => alert('Service Provider registered successfully'))
   }
 }
