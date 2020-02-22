@@ -30,3 +30,14 @@
   .topnav-right {
     float: right;
   }
+  .hero {
+    background-image: url('../../assets/img/backgroud1.jpeg');
+    background-position: center;
+    background-size: cover;
+    height:630px;
+    margin-top: -55px;
+  }
+  .hero h1 {
+    padding-top: 250px;
+    padding-left: 340px;
+  }
