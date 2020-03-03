@@ -3,6 +3,7 @@
     margin-left: 300px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+    border-top-right-radius: -120x;
     position: sticky;
   }
 
