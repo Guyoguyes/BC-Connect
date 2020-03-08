@@ -29,6 +29,12 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+//passport Midleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport.client')(passport)
+
 //import client route
 const clientRoute = require('./routes/client.route');
 //import service provider route
