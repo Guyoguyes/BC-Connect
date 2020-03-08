@@ -1,13 +1,15 @@
 const express = require('express');
-const route = express.Router();
-const bcrypt = require('bcrypt')
+const router = express.Router();
+const passport = require('passport');
+const jwt = require('jsonwebtoken')
 
 
 // import the client model and schema
 const Client = require('../model/client');
+const config = require('../config/db');
 
 //register client
-route.post('/register-client', (req, res) =>{
+router.post('/register-client', (req, res) =>{
     let newClient = new Client({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -51,8 +53,39 @@ route.post('/register-client', (req, res) =>{
 
 
 
-//login user
+//authenicate client
+router.post('/authenticate', (req, res, next) =>{
+  const email = req.body.email;
+  const password = req.body.password;
+
+  Client.getClientByEmail(email, (err, client) =>{
+    if(err) throw err;
+    if(!client){
+      return res.json({sucess: false, msg:'user not found'})
+    }
+  Client.comparePassword(password, client.password, (err, isMatch) =>{
+    if(err) throw err;
+    if(isMatch){
+      const token = jwt.sign(client, config.secret, {
+        expiresIn: 604000 //1 week
+      });
+
+      res.json({
+        sucess: true,
+        token: 'JWT' + token,
+        user: {
+          id: client._id,
+          first_name: client.first_name,
+          last_name: client.last_name
+        }
+      })
+    }else{
+      return res.json(err)
+    }
+  })
+  })
+})
 
 
 //export client route;
-module.exports = route;
+module.exports = router;
