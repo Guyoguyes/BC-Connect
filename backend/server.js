@@ -33,7 +33,8 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport.client')(passport)
+require('./config/passport.client')(passport);
+require('./config/passport.servicer')(passport);
 
 //import client route
 const clientRoute = require('./routes/client.route');

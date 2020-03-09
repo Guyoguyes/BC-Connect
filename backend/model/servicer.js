@@ -40,7 +40,8 @@ module.exports.getServicerById = function(id, callback){
 }
 
 module.exports.getServicerByEmail = function(email, callback){
-
+  const query = {email: email}
+  Servicer.findOne(query, callback)
 }
 
 module.exports.addServicer = function(newServicer, callback){
@@ -49,5 +50,12 @@ module.exports.addServicer = function(newServicer, callback){
       newServicer.password = hash;
       newServicer.save(callback)
     })
+  })
+}
+
+module.exports.comparePassword = function(canditatePassword, hash, callback){
+  bcrypt.compare(canditatePassword, hash, (err, isMatch) =>{
+    if(err) throw err;
+    callback(null, isMatch)
   })
 }

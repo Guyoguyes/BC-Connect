@@ -11,6 +11,7 @@
   border-top-right-radius: -120x;
   position: sticky;
   width: 450px;
+  
 }
 
 .topnav a {
@@ -37,3 +38,4 @@
 .topnav-right {
   float: right;
 }
+

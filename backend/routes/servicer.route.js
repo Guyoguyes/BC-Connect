@@ -1,13 +1,14 @@
 const express = require('express');
 
-const route = express.Router();
+const router = express.Router();
 
 //import servicer schema
-const Servicer = require('../model/servicer')
+const Servicer = require('../model/servicer');
+const config = require('../config/db')
 
 
 //register service provider
-route.post('/register-service-provider', (req, res) =>{
+router.post('/register-service-provider', (req, res) =>{
   let newServicer = new Servicer({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -35,4 +36,36 @@ route.post('/register-service-provider', (req, res) =>{
   })
 });
 
-module.exports = route;
+//authenticate servicer
+router.post('/authenticate', (req, res, next) =>{
+  const email = req.body.email;
+  const password = req.body.password;
+
+  Servicer.getServicerByEmail(email, (err, servicer) =>{
+    if(err) throw err;
+    if(!servicer){
+      return res.json({success: false, msg:'User not found'})
+    }
+  Servicer.comparePassword(password, servicer.password, (err, isMatch) =>{
+    if(err) throw err;
+    if(isMatch){
+      const token = jwt.sign(servicer.toJSON(), config.secret, {
+        expiresIn: 604000 //1 week
+      });
+      res.json({
+        success: true,
+        token: 'JWT' + token,
+        servicer: {
+          id: servicer._id,
+          first_name: servicer.first_name,
+          last_name: servicer.last_name,
+          service: servicer.service
+        }
+      })
+    }
+  })
+  })
+})
+
+
+module.exports = router;
