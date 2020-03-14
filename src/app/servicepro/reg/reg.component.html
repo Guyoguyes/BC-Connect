@@ -1,39 +1,39 @@
 <!-- Material form login -->
 
  <!-- Default form register -->
- <form class="text-center  p-5"  [formGroup]="angForm">
+ <form class="text-center  p-5"  #form='ngForm'>
 
   <p class="h4 mb-4">Sign up <br>(service provider)</p>
 
   <div class="form-row mb-4">
       <div class="col">
           <!-- First name -->
-          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" formControlName="first_name" #first_name>
+          <input type="text"  class="form-control" placeholder="First name" name="first_name" [(ngModel)]='register.first_name'>
       </div>
       <div class="col">
           <!-- Last name -->
-          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" formControlName="last_name" #last_name>
+          <input type="text"  class="form-control" placeholder="Last name" name="last_name" [(ngModel)]='register.last_name'>
       </div>
   </div>
 
   <!-- E-mail -->
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" formControlName="email" #email>
+  <input type="email" class="form-control mb-4" placeholder="E-mail" name="email" [(ngModel)]='register.email'>
 
 <!-- Phone number -->
-<input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" formControlName="mobile" #mobile>
+<input type="text"  class="form-control" placeholder="Phone number"  name="mobile" [(ngModel)]='register.mobile'>
 <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
   Optional - for two step authentication
 </small>
 
   <!-- City -->
-  <input type="address" id="defaultRegisterFormCity" class="form-control mb-4" placeholder="Address" formControlName="city" #city>
+  <input type="address"  class="form-control mb-4" placeholder="Address" name="city" [(ngModel)]='register.city'>
 
   <!-- Service-->
 
-  <input type="text" id="defaultRegisterFormCity" class="form-control mb-4" placeholder="service" formControlName="service" #service>
+  <input type="text"  class="form-control mb-4" placeholder="service" name="service" [(ngModel)]='register.service'>
 
   <!-- Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="password" #password>
+  <input type="password"  class="form-control" placeholder="Password"  name="password" [(ngModel)]='register.password'>
   <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
     At least 8 characters and 1 digit
 </small>
@@ -48,7 +48,7 @@
   </div> -->
 
   <!-- Sign up button -->
-  <button class="btn btn-info my-4 btn-block" type="submit" (click)="addService(first_name.value, last_name.value, email.value, mobile.value, city.value, service.value, password.value)">Sign in</button>
+  <button class="btn btn-info my-4 btn-block" type="submit" (click)="onSubmit()">Sign in</button>
 
   <!-- Social register -->
   <p>or sign up with:</p>

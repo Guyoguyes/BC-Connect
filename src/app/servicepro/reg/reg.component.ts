@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { RegisterService } from '../../service/register.service';
+import { RegisterServicer } from '../class/register';
+
 
 @Component({
   selector: 'app-reg',
@@ -9,26 +11,26 @@ import { RegisterService } from '../../service/register.service';
 })
 export class RegComponent implements OnInit {
 
-  angForm: FormGroup
-  constructor(private fb: FormBuilder, private rs: RegisterService) {
-    this.createForm();
+  register: RegisterServicer ={
+    first_name: null,
+    last_name: null,
+    email: null,
+    mobile: null,
+    city: null,
+    service: null,
+    password: null,
+  }
+
+  constructor(private fb: FormBuilder, private registerService: RegisterService) {
+    // this.createForm();
    }
 
-   createForm(){
-    this.angForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', Validators.required],
-      mobile: ['', Validators.required],
-      city: ['', Validators.required],
-      service:['', Validators.required],
-      password:['', Validators.required]
-    })
-   }
-
-   addService(first_name, last_name, email, mobile, city, service, password){
-     this.rs.addService(first_name, last_name, email, mobile, city, service, password)
-   }
+  onSubmit(form: NgForm){
+    this.registerService.addServicer(this.register).subscribe(
+      result => console.log('Success', result),
+      error => console.log('error', error)
+    )
+  }
 
   ngOnInit() {
   }

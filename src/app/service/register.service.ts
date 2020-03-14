@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Register } from '../client/class/register';
 import { Observable } from 'rxjs';
+import { RegisterServicer } from '../servicepro/class/register';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,7 @@ uri = 'http://localhost:3000';
   }
 
   //Add service provider
-  addService(first_name, last_name, email, mobile, city, service, password){
-    const obj = {
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      mobile: mobile,
-      city: city,
-      service: service,
-      password: password
-    };
-    console.log(obj);
-    this.http.post(`${this.uri}/servicer/register-service-provider`, obj)
-        .subscribe(res => alert('Service Provider registered successfully'))
+  addServicer(register: RegisterServicer): Observable<any>{
+    return  this.http.post(`${this.uri}/servicer/register-service-provider`, register)
   }
 }
