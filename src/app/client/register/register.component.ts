@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms'
 import { RegisterService } from '../../service/register.service';
+import { Router } from '@angular/router';
+import { ValidateService } from 'src/app/service/validate.service';
+import { Register } from '../class/register';
 
 @Component({
   selector: 'app-register',
@@ -9,25 +12,45 @@ import { RegisterService } from '../../service/register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  angForm: FormGroup;
+  // angForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private rs: RegisterService) {
-    this.createForm();
+  register: Register = {
+    first_name: null,
+    last_name: null,
+    email: null,
+    mobile: null, 
+    city: null,
+    password: null
   }
 
-  createForm(){
-    this.angForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', Validators.required],
-      mobile: ['', Validators.required],
-      city: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+  constructor(private fb: FormBuilder, 
+              private registerService: RegisterService, 
+              private validateService: ValidateService,
+              private router: Router) {
+    // this.createForm();
   }
 
-  addClient(first_name, last_name, email, mobile, city, password){
-    this.rs.addClient(first_name, last_name, email, mobile, city, password)
+  // createForm(){
+  //   this.angForm = this.fb.group({
+  //     first_name: ['', Validators.required],
+  //     last_name: ['', Validators.required],
+  //     email: ['', Validators.required],
+  //     mobile: ['', Validators.required],
+  //     city: ['', Validators.required],
+  //     password: ['', Validators.required]
+  //   });
+  // }
+
+  // addClient(first_name, last_name, email, mobile, city, password){
+  //   if(!this.validateService.validateEmail(this.))
+  //   this.rs.addClient(first_name, last_name, email, mobile, city, password);
+    
+  // }
+
+  onSubmit(form: NgForm){
+    this.registerService.addClient(this.register).subscribe(
+      result => console.log('Client Saved', result),
+      error => console.log('error', error)    )
   }
 
   ngOnInit() {
