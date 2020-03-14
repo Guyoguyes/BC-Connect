@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: NgForm){
 
     //validation of registration
-    if(!this.validateService.validateRegister(this.register)){
+    if(!this.validateService.validateRegisterClient(this.register)){
       alert('please fill in the fields')
     }
 
