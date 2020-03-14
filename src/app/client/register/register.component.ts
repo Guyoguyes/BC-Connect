@@ -48,6 +48,18 @@ export class RegisterComponent implements OnInit {
   // }
 
   onSubmit(form: NgForm){
+
+    //validation of registration
+    if(!this.validateService.validateRegister(this.register)){
+      alert('please fill in the fields')
+    }
+
+    //validation of email
+    if(!this.validateService.validateEmail(this.register.email)){
+      alert('Please use a valid email')
+      return false
+    }
+
     this.registerService.addClient(this.register).subscribe(
       result => console.log('Client Saved', result),
       error => console.log('error', error)    )
