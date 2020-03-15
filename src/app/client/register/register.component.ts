@@ -4,6 +4,7 @@ import { RegisterService } from '../../service/register.service';
 import { Router } from '@angular/router';
 import { ValidateService } from 'src/app/service/validate.service';
 import { Register } from '../class/register';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -18,15 +19,16 @@ export class RegisterComponent implements OnInit {
     first_name: null,
     last_name: null,
     email: null,
-    mobile: null, 
+    mobile: null,
     city: null,
     password: null
   }
 
-  constructor(private fb: FormBuilder, 
-              private registerService: RegisterService, 
+  constructor(private fb: FormBuilder,
+              private registerService: RegisterService,
               private validateService: ValidateService,
-              private router: Router) {
+              private router: Router,
+              private flashmessages: FlashMessagesService) {
     // this.createForm();
   }
 
@@ -44,25 +46,28 @@ export class RegisterComponent implements OnInit {
   // addClient(first_name, last_name, email, mobile, city, password){
   //   if(!this.validateService.validateEmail(this.))
   //   this.rs.addClient(first_name, last_name, email, mobile, city, password);
-    
+
   // }
 
   onSubmit(form: NgForm){
 
     //validation of registration
     if(!this.validateService.validateRegisterClient(this.register)){
-      alert('please fill in the fields')
+      this.flashmessages.show('Please fill in all the fields', {cssClass: 'alert-danger', timeout: 4000});
+      return false;
     }
 
     //validation of email
     if(!this.validateService.validateEmail(this.register.email)){
-      alert('Please use a valid email')
-      return false
+      this.flashmessages.show('Please use a vaild email', {cssClass: 'alert-danger', timeout: 3000})
     }
 
     this.registerService.addClient(this.register).subscribe(
       result => console.log('Client Saved', result),
-      error => console.log('error', error)    )
+      error => console.log('error', error)
+
+      )
+      this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
   }
 
   ngOnInit() {

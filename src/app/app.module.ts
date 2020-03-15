@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterService } from './service/register.service';
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,9 +39,10 @@ import { ProComponent } from './servicepro/pro/pro.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlashMessagesModule
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, FlashMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
