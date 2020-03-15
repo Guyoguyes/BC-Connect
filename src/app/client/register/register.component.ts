@@ -29,26 +29,10 @@ export class RegisterComponent implements OnInit {
               private validateService: ValidateService,
               private router: Router,
               private flashmessages: FlashMessagesService) {
-    // this.createForm();
+    
   }
 
-  // createForm(){
-  //   this.angForm = this.fb.group({
-  //     first_name: ['', Validators.required],
-  //     last_name: ['', Validators.required],
-  //     email: ['', Validators.required],
-  //     mobile: ['', Validators.required],
-  //     city: ['', Validators.required],
-  //     password: ['', Validators.required]
-  //   });
-  // }
-
-  // addClient(first_name, last_name, email, mobile, city, password){
-  //   if(!this.validateService.validateEmail(this.))
-  //   this.rs.addClient(first_name, last_name, email, mobile, city, password);
-
-  // }
-
+  
   onSubmit(form: NgForm){
 
     //validation of registration
@@ -68,6 +52,7 @@ export class RegisterComponent implements OnInit {
 
       )
       this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
+      this.router.navigate(['/main-login'])
   }
 
   ngOnInit() {

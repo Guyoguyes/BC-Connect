@@ -30,7 +30,7 @@
 }
 
 .topnav a.active {
-  background-color: rgb(31, 29, 29);
+  background-color:transparent;
   border-radius: 50%;
   color: white;
 }
