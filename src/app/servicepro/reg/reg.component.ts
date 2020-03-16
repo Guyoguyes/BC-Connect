@@ -4,6 +4,7 @@ import { RegisterService } from '../../service/register.service';
 import { RegisterServicer } from '../class/register';
 import { ValidateService } from 'src/app/service/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class RegComponent implements OnInit {
     password: null,
   }
 
-  constructor(private fb: FormBuilder,
+  constructor(private router: Router,
               private registerService: RegisterService,
               private validateService: ValidateService,
               private flashMessages: FlashMessagesService) {
@@ -47,7 +48,8 @@ export class RegComponent implements OnInit {
       result => console.log('Success', result),
       error => console.log('error', error)
     )
-    this.flashMessages.show('Service provider registered successfully', {cssClass: 'alert-success', timeout: 3000})
+    this.flashMessages.show('Service provider registered successfully', {cssClass: 'alert-success', timeout: 3000});
+    this.router.navigate(['/login-servicer'])
   }
 
   ngOnInit() {

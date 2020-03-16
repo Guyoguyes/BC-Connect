@@ -49,7 +49,7 @@ router.post('/authenticate', (req, res, next) =>{
   Servicer.comparePassword(password, servicer.password, (err, isMatch) =>{
     if(err) throw err;
     if(isMatch){
-      const token = jwt.sign(servicer.toJSON(), config.secret, {
+      const token = jwt.sign(servicer.toJSON(), config.secret2, {
         expiresIn: 604000 //1 week
       });
       res.json({

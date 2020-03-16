@@ -29,10 +29,10 @@ export class RegisterComponent implements OnInit {
               private validateService: ValidateService,
               private router: Router,
               private flashmessages: FlashMessagesService) {
-    
+
   }
 
-  
+
   onSubmit(form: NgForm){
 
     //validation of registration
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
 
       )
       this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
-      this.router.navigate(['/main-login'])
+      this.router.navigate(['/login-client'])
   }
 
   ngOnInit() {

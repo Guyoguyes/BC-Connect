@@ -1,4 +1,5 @@
 module.exports = {
   database: 'mongodb://127.0.0.1:27017/blue-collar',
-  secret: 'mySecret'
+  secret: 'mySecret',
+  secret2: 'myothersecret'
 }

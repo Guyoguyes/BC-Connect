@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginCl } from '../class/login-cl';
+import { NgForm } from '@angular/forms';
+import { RegisterService } from 'src/app/service/register.service';
 
 
 
@@ -10,13 +13,23 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
 
+login_cl: LoginCl = {
+  email: null,
+  password: null,
+}
 
 
 
-  constructor() { }
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
   }
+  onLogin(form: NgForm){
+    this.registerService.authenticateClient(this.login_cl).subscribe(
+      result => console.log('Success', result),
+      error => console.log('Error', error)
 
-  
+    )
+  }
+
 }
