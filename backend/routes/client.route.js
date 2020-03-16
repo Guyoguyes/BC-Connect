@@ -34,20 +34,8 @@ router.post('/register-client', (req, res) =>{
       }
     })
 
-    // newClient.save(function(err, client){
-    //     if(err){
-    //         console.log(err)
-    //     }else{
-    //         console.log('client registered')
-    //         res.json({success: true, msg:'Client registered successful'})
-    //     }
+    
 
-        // bcrypt.genSalt(10, function(err, salt){
-        //     bcrypt.hash(newClient.password, salt,(err, hash) =>{
-        //         if(err) throw err;
-        //         newClient.password = hash;
-        //     })
-        // })
     });
 
 
