@@ -1,64 +1,72 @@
+<div class="card">
+  <div class="card-header bg-secondary">
+    <p class="h4 mb-4">Sign up <br>(client)</p>
+  </div>
+  <div class="card-body">
 <!-- Material form login -->
 
  <!-- Default form register -->
-<form class="text-center   p-5"   #form='ngForm'>
+ <form class="text-center border border-light   p-5"   #form='ngForm'>
+  <flash-messages></flash-messages>
 
-  <p class="h4 mb-4">Sign up <br>(client)</p>
 
-  <div class="form-row mb-4">
-      <div class="col">
-          <!-- First name -->
-          <input type="text"  class="form-control" name="first_name" [(ngModel)]='register.first_name' placeholder="First name" >
-      </div>
-      <div class="col">
-          <!-- Last name -->
-          <input type="text"  class="form-control" name="last_name" [(ngModel)]='register.last_name' placeholder="Last name" >
-      </div>
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text"  class="form-control" name="first_name" [(ngModel)]='register.first_name' placeholder="First name" >
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text"  class="form-control" name="last_name" [(ngModel)]='register.last_name' placeholder="Last name" >
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    <input type="email"  class="form-control mb-4" name="email" [(ngModel)]='register.email' placeholder="E-mail" >
+
+  <!-- Phone number -->
+  <input type="text" class="form-control" name="mobile" [(ngModel)]='register.mobile' placeholder="Phone number"  >
+  <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+    Optional - for two step authentication
+  </small>
+
+    <!-- City -->
+    <input type="address"  class="form-control mb-4" name="city" [(ngModel)]="register.city" placeholder="Address" >
+    <!-- Password -->
+    <input type="password"  class="form-control" name="password" [(ngModel)]="register.password" placeholder="Password" >
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+      At least 8 characters and 1 digit
+  </small>
+
+
+
+
+    <!-- Newsletter -->
+    <!-- <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+        <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+    </div> -->
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit" (click)='onSubmit()' >Sign in</button>
+
+    <!-- Social register -->
+    <p>or sign up with:</p>
+
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-google light-blue-text"></i></a>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>
+
+  </form>
+  <!-- Default form register -->
   </div>
+</div>
 
-  <!-- E-mail -->
-  <input type="email"  class="form-control mb-4" name="email" [(ngModel)]='register.email' placeholder="E-mail" >
-
-<!-- Phone number -->
-<input type="text" class="form-control" name="mobile" [(ngModel)]='register.mobile' placeholder="Phone number"  >
-<small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-  Optional - for two step authentication
-</small>
-
-  <!-- City -->
-  <input type="address"  class="form-control mb-4" name="city" [(ngModel)]="register.city" placeholder="Address" >
-  <!-- Password -->
-  <input type="password"  class="form-control" name="password" [(ngModel)]="register.password" placeholder="Password" >
-  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-    At least 8 characters and 1 digit
-</small>
-
-
-
-
-  <!-- Newsletter -->
-  <!-- <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-      <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
-  </div> -->
-
-  <!-- Sign up button -->
-  <button class="btn btn-info my-4 btn-block" type="submit" (click)='onSubmit()' >Sign in</button>
-
-  <!-- Social register -->
-  <p>or sign up with:</p>
-
-  <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-  <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-  <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-  <a href="#" class="mx-2" role="button"><i class="fab fa-google light-blue-text"></i></a>
-
-  <hr>
-
-  <!-- Terms of service -->
-  <p>By clicking
-      <em>Sign up</em> you agree to our
-      <a href="" target="_blank">terms of service</a>
-
-</form>
-<!-- Default form register -->
