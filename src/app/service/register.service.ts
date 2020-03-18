@@ -27,6 +27,13 @@ servicer: any;
   authenticateClient(login_cl: LoginCl): Observable<any>{
     return this.http.post(`${this.uri}/client/authenticate`, login_cl)
   }
+
+  //get client profile
+  getClientProfile(){
+    this.loadToken();
+
+    return this.http.get(`${this.uri}/client/profile`)
+  }
   
   //store Client data
   storeClientData(token, client){
@@ -34,6 +41,11 @@ servicer: any;
     localStorage.setItem('client', JSON.stringify(client));
     this.authToken = token;
     this.client = client;
+  }
+
+  loadToken(){
+    const token = localStorage.getItem('id_token');
+    this.authToken = token
   }
 
   //logout client

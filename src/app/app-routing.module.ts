@@ -9,6 +9,8 @@ import { MainRegisterComponent } from './main-register/main-register.component';
 import { LogComponent } from './servicepro/logi/log.component';
 import { RegComponent } from './servicepro/reg/reg.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './client/profile/profile.component';
+import { ProComponent } from './servicepro/pro/pro.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
   {path: 'recover', component: RecoverComponent},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'main-register', component: MainRegisterComponent},
-  {path: 'dashboard', component: DashboardComponent}
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'client-profile', component: ProfileComponent},
+  {path: 'servicer-profile', component: ProComponent}
 
 ];
 

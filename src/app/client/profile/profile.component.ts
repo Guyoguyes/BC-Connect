@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterService } from 'src/app/service/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  client: Object;
+
+  constructor(private registerService: RegisterService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.registerService.getClientProfile().subscribe(profile =>{
+      this.client = profile.client
+    },
+    err =>{
+      console.log(err);
+      return false
+    })
   }
 
 }
