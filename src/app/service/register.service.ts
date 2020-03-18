@@ -40,6 +40,7 @@ servicer: any;
   logOutClient(){
     this.authToken = null,
     this.client = null,
+    this.servicer = null,
     localStorage.clear();
   }
 
@@ -52,5 +53,13 @@ servicer: any;
   //authenticate Service provider
   authenticateServicer(login_cl: LoginClService): Observable<any>{
     return this.http.post(`${this.uri}/servicer/authenticate`, login_cl)
+  }
+  
+  //store Servicer data
+  storeServicerData(token, servicer){
+    localStorage.setItem('id_token', servicer);
+    localStorage.setItem('servicer', JSON.stringify(servicer));
+    this.authToken = token;
+    this.servicer = servicer;
   }
 }
