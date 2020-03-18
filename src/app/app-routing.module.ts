@@ -8,6 +8,7 @@ import { MainLoginComponent } from './main-login/main-login.component';
 import { MainRegisterComponent } from './main-register/main-register.component';
 import { LogComponent } from './servicepro/logi/log.component';
 import { RegComponent } from './servicepro/reg/reg.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'register-servicer', component: RegComponent},
   {path: 'recover', component: RecoverComponent},
   {path: 'main-login', component: MainLoginComponent},
-  {path: 'main-register', component: MainRegisterComponent}
+  {path: 'main-register', component: MainRegisterComponent},
+  {path: 'dashboard', component: DashboardComponent}
 
 ];
 

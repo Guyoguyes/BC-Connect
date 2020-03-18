@@ -12,6 +12,9 @@ import { LoginClService } from '../servicepro/class/login-cl-service';
 export class RegisterService {
 
 uri = 'http://localhost:3000';
+authToken: any;
+client: any;
+servicer: any;
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +27,17 @@ uri = 'http://localhost:3000';
   authenticateClient(login_cl: LoginCl): Observable<any>{
     return this.http.post(`${this.uri}/client/authenticate`, login_cl)
   }
+  
+  //store Client data
+  storeClientData(token, client){
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('client', JSON.stringify(client));
+    this.authToken = token;
+    this.client = client;
+  }
+
+  
+
 
   //Add service provider
   addServicer(register: RegisterServicer): Observable<any>{
