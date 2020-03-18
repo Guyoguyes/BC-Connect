@@ -36,7 +36,12 @@ servicer: any;
     this.client = client;
   }
 
-  
+  //logout client
+  logOutClient(){
+    this.authToken = null,
+    this.client = null,
+    localStorage.clear();
+  }
 
 
   //Add service provider
