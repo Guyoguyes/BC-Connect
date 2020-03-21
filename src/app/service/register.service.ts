@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Register } from '../client/class/register';
 import { Observable } from 'rxjs';
 import { RegisterServicer } from '../servicepro/class/register';
@@ -29,9 +29,11 @@ servicer: any;
   }
 
   //get client profile
-  getClientProfile(){
+  getClientProfile():Observable<any>{
+    let headers = new Headers()
     this.loadToken();
-
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json')    
     return this.http.get(`${this.uri}/client/profile`)
   }
   
@@ -56,6 +58,11 @@ servicer: any;
     localStorage.clear();
   }
 
+  //Get service provider profile
+  getSevicerProfile(){
+    this.loadToken();
+    return this.http.get(`${this.uri}/servicer/profile`)
+  }
 
   //Add service provider
   addServicer(register: RegisterServicer): Observable<any>{

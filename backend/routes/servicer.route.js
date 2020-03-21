@@ -70,4 +70,8 @@ router.post('/authenticate', (req, res, next) =>{
 })
 
 
+router.get('/profile', (req, res) =>{
+  res.send('Profile')
+})
+
 module.exports = router;

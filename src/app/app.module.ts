@@ -20,6 +20,7 @@ import { RegComponent } from './servicepro/reg/reg.component';
 import { LogComponent } from './servicepro/logi/log.component';
 import { ProComponent } from './servicepro/pro/pro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './client/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegComponent,
     LogComponent,
     ProComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
