@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Register } from '../client/class/register';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { RegisterServicer } from '../servicepro/class/register';
 import { LoginCl } from '../client/class/login-cl';
 import { LoginClService } from '../servicepro/class/login-cl-service';
@@ -29,12 +31,13 @@ servicer: any;
   }
 
   //get client profile
-  getClientProfile():Observable<any>{
-    let headers = new Headers()
+  getClientProfile(){
+    let headers = new HttpHeaders()
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json')    
-    return this.http.get(`${this.uri}/client/profile`)
+    return this.http.get(`${this.uri}/client/profile`, {headers: headers}).pipe(map(data => {}))
+    
   }
   
   //store Client data

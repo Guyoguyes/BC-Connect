@@ -23,13 +23,10 @@ export class ProfileComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.registerService.getClientProfile().subscribe(profile =>{
-      this.client = profile.client;
-    },
-    err =>{
-      console.log(err);
-      return false
-    })
+    this.registerService.getClientProfile().subscribe(
+      result => console.log('Profile Success', result),
+      error => console.log('profile Error', error)
+    )
   }
 
 }

@@ -24,13 +24,10 @@ servicer:  RegisterServicer ={
               private router: Router) { }
 
   ngOnInit() {
-    this.registerService.getSevicerProfile().subscribe(profile =>{
-      this.servicer = profile
-    },
-    err =>{
-      console.log(err);
-      return false
-    })
+    this.registerService.getSevicerProfile().subscribe(
+      result => console.log('Profile Success', result),
+      error => console.log('error', error)
+    )
   }
 
 }
