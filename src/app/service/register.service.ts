@@ -36,14 +36,16 @@ servicer: any;
 
   //get client profile
   getClientProfile(): Observable<any>{
-    
+    let headers = new HttpHeaders();
     this.loadToken();
-       
-    return this.http.get(`${this.uri}/client/profile`)
-      
-    
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json')
+    return this.http.get(`${this.uri}/client/profile`, {headers: headers})
+
+
+
   }
-  
+
   //store Client data
   storeClientData(token, client){
     localStorage.setItem('id_token', token);
@@ -80,7 +82,7 @@ servicer: any;
   authenticateServicer(login_cl: LoginClService): Observable<any>{
     return this.http.post(`${this.uri}/servicer/authenticate`, login_cl)
   }
-  
+
   //store Servicer data
   storeServicerData(token, servicer){
     localStorage.setItem('id_token', servicer);

@@ -34,7 +34,7 @@ router.post('/register-client', (req, res) =>{
       }
     })
 
-    
+
 
     });
 
@@ -74,8 +74,8 @@ router.post('/authenticate', (req, res, next) =>{
   })
 });
 
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-  res.send('profile')
+router.get('/profile', (req, res, next) => {
+  res.json({client: req.first_name})
 });
 
 
