@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Register } from '../client/class/register';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable} from 'rxjs';
+
 
 import { RegisterServicer } from '../servicepro/class/register';
 import { LoginCl } from '../client/class/login-cl';
@@ -22,21 +22,25 @@ servicer: any;
 
   //Add client
   addClient(register: Register): Observable<any>{
-   return this.http.post(`${this.uri}/client/register-client`, register)
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+   return this.http.post(`${this.uri}/client/register-client`, register, {headers: headers})
   }
 
   //authenticate Client
   authenticateClient(login_cl: LoginCl): Observable<any>{
-    return this.http.post(`${this.uri}/client/authenticate`, login_cl)
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(`${this.uri}/client/authenticate`, login_cl, {headers: headers})
   }
 
   //get client profile
-  getClientProfile(){
-    let headers = new HttpHeaders()
+  getClientProfile(): Observable<any>{
+    
     this.loadToken();
-    headers.append('Authorization', this.authToken);
-    headers.append('Content-Type', 'application/json')    
-    return this.http.get(`${this.uri}/client/profile`, {headers: headers}).pipe(map(data => {}))
+       
+    return this.http.get(`${this.uri}/client/profile`)
+      
     
   }
   
