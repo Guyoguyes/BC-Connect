@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterService } from './service/register.service';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
+import { JwtModule } from '@auth0/angular-jwt';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,11 @@ import { LogComponent } from './servicepro/logi/log.component';
 import { ProComponent } from './servicepro/pro/pro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './client/profile/profile.component';
+import { AuthInterceptor } from './service/authconfig.interceptor';
+
+// export function tokenGetter(){
+//   return localStorage.getItem('access_token')
+// }
 
 @NgModule({
   declarations: [
@@ -44,9 +51,22 @@ import { ProfileComponent } from './client/profile/profile.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    // JwtModule.forRoot({
+    //   config:{
+    //     tokenGetter: tokenGetter,
+    //     whitelistedDomains:['localhost:3000'],
+    //     blacklistedRoutes:['localhost:3000/serciver/authenticate']
+    //   }
+    // })
   ],
-  providers: [RegisterService, FlashMessagesService],
+  providers: [RegisterService, FlashMessagesService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

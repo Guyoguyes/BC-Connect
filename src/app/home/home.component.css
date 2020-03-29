@@ -33,6 +33,10 @@
     background:rgba(0,26,77,.2)
   }
 
+  #how-it-works{
+    height: 700px;
+  }
+
   #how-it-works h2 {
     text-align: center;
     font-size: 40px;
@@ -43,40 +47,39 @@
     letter-spacing: 1.5px;
     line-height: 40px;
     }
-    #how-it-works .col-md-7{
+    /* #how-it-works .col-md-7{
       padding: 0;
-      border:20px solid rgb(0,0,0);
-      border-width:10px 0;
-    }
-    #how-works{
-      padding: 50px;
-      background: rgb(0,26,77);
-    }
+      /* border:20px solid rgb(0,0,0); */
+      /* border-width:10px 0; */
+    /* } */
+
     #how-works h2{
       font-family: 'Courgette', cursive;
-      color: white
+      color: black
     }
     #how-works li{
       padding: 20px;
-      color: white;
+      color:black;
       font-style: italic;
       text-transform: capitalize;
     }
-    .how-img {
+    /* .how-img {
       padding: 0;
       background-color: blue;
-      background-image: url("../../assets/animation/mechanic.png");
-      background-position:left ;
+      background-image: url("../../assets/img/banner-img.png");
+      background-position:center ;
       background-size:cover;
-    }
-    .how-overlay{
+
+
+    } */
+    /* .how-overlay{
       height: 100%;
       width:100%;
       background-color: rgba(0,0,0,.7);
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+    } */
 
     #contact-us .offset-md-1{
       height: 100%;

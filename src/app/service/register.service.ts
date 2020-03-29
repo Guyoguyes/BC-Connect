@@ -7,6 +7,7 @@ import { Observable} from 'rxjs';
 import { RegisterServicer } from '../servicepro/class/register';
 import { LoginCl } from '../client/class/login-cl';
 import { LoginClService } from '../servicepro/class/login-cl-service';
+// import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,11 @@ servicer: any;
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token
+  }
+
+  loggedIn(){
+    let authToken = localStorage.getItem('access_token');
+    return (authToken !== null) ? true : false;
   }
 
   //logout client

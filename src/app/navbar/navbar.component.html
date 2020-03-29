@@ -13,15 +13,15 @@
 
       </ul>
       <span class="navbar-text white-text">
-        <button class="btn btn-dark" routerLink='main-register'>dashBoard</button>
-                <button class="btn btn-primary" >Profile</button>
+        <button class="btn btn-dark" routerLink='dashboard' *ngIf='registerService.loggedIn()'>dashBoard</button>
+                <button class="btn btn-primary" routerLink='client-profile'  *ngIf='registerService.loggedIn()'>Profile</button>
           <!-- <div class="row">
               <div class="col-md-6"> -->
                 <button class="btn btn-light" routerLink='main-login'>Sign In</button>
               <!-- </div> -->
               <!-- <div class="col-md-6"> -->
                 <button class="btn btn-dark" routerLink='main-register'>Sign Up</button>
-                <button class="btn btn-primary" (click)="onLogOut()">Logout</button>
+                <button class="btn btn-primary" (click)="onLogOut()"  *ngIf='registerService.loggedIn()'>Logout</button>
               <!-- </div>
           </div> -->
 

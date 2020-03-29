@@ -35,7 +35,7 @@ login_cl: LoginCl = {
           this.flashMessages.show('You are logged in', {
             cssClass: 'alert-success', timeout: 3000
           })
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/client-profile'])
       }else{
         this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['/login'])
@@ -43,8 +43,8 @@ login_cl: LoginCl = {
     }
       // result => this.flashMessages.show('Login Success', {cssClass:'alert-success', timeout: 3000}),
       // error => this.flashMessages.show(error, {cssClass: 'alert-danger', timeout:3000})
-      
-      
+
+
 
     )
   }

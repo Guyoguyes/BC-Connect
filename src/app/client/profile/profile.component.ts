@@ -29,8 +29,6 @@ export class ProfileComponent implements OnInit {
     result => console.log('Profile Success', result),
     error => console.log('Profile error', error)
 
-  )
-  return this.client
-  }
+  )}
 
 }
