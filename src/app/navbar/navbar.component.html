@@ -12,20 +12,22 @@
         </li> -->
 
       </ul>
-      <span class="navbar-text white-text">
-        <button class="btn btn-dark" routerLink='dashboard' *ngIf='registerService.loggedIn()'>dashBoard</button>
-                <button class="btn btn-primary" routerLink='client-profile'  *ngIf='registerService.loggedIn()'>Profile</button>
-          <!-- <div class="row">
-              <div class="col-md-6"> -->
-                <button class="btn btn-light" routerLink='main-login'>Sign In</button>
-              <!-- </div> -->
-              <!-- <div class="col-md-6"> -->
-                <button class="btn btn-dark" routerLink='main-register'>Sign Up</button>
-                <button class="btn btn-primary" (click)="onLogOut()"  *ngIf='registerService.loggedIn()'>Logout</button>
-              <!-- </div>
-          </div> -->
-
-      </span>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngIf="registerService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <a class="nav-link" [routerLink]="['/dashboard']">Dashboard </a>
+        </li>
+        <li class="nav-item" *ngIf="registerService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <a class="nav-link" [routerLink]="['/profile']">Profile </a>
+        </li>
+        <li class="nav-item" *ngIf="!registerService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <a class="nav-link" [routerLink]="['/main-login']">Login </a>
+        </li>
+        <li class="nav-item" *ngIf="!registerService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <a class="nav-link" [routerLink]="['/main-register']">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="registerService.loggedIn()"><a class="nav-link" (click)="onLogOut()" href="#">Logout</a>
+        </li>
+      </ul>
     </div>
   </nav>
 

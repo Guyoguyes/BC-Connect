@@ -24,6 +24,7 @@ import { ProComponent } from './servicepro/pro/pro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './client/profile/profile.component';
 import { AuthInterceptor } from './service/authconfig.interceptor';
+import { RegisterGuard } from './guard/register.guard';
 
 // export function tokenGetter(){
 //   return localStorage.getItem('access_token')
@@ -64,7 +65,7 @@ import { AuthInterceptor } from './service/authconfig.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  }, RegisterGuard],
   bootstrap: [AppComponent]
 })
 
