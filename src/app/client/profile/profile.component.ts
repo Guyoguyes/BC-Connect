@@ -14,12 +14,12 @@ export class ProfileComponent implements OnInit {
   // client: Object;
 
   client:  Register = {
-    first_name: null,
-    last_name: null,
-    email: null,
+    first_name: '',
+    last_name: '',
+    email: '',
     mobile: null,
-    city: null,
-    password: null,
+    city: '',
+    password: '',
   } ;
   constructor(private registerService: RegisterService,
               private router: Router) { }

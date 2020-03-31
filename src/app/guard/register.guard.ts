@@ -10,18 +10,12 @@ export class RegisterGuard implements CanActivate {
   constructor(private registerService: RegisterService, private router: Router){
 
   }
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.registerService.loggedIn()){
-      return true
-    }else{
-      this.router.navigate(['/main-login'])
-      
-    }
-
-
+  canActivate(){
+   if(!this.registerService.loggedIn()){
+     this.router.navigate(['/main-login']);
+     return false;
+   }
+   return true
   }
-
 
 }

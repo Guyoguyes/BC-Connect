@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Register } from '../client/class/register';
 import { Observable} from 'rxjs';
+// import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 import { RegisterServicer } from '../servicepro/class/register';
@@ -36,7 +37,7 @@ servicer: any;
   }
 
   //get client profile
-  getClientProfile(): Observable<any>{
+  getClientProfile(id): Observable<any>{
     let headers = new HttpHeaders();
     this.loadToken();
     headers.append('Authorization', this.authToken);
@@ -59,6 +60,11 @@ servicer: any;
     const token = localStorage.getItem('id_token');
     this.authToken = token
   }
+
+  // loggedIn(){
+  //   const token = localStorage.getItem('token');
+  //   return !this.jwtHelper.isTokenExpired(token)
+  // }
 
   loggedIn(){
     let authToken = localStorage.getItem('access_token');

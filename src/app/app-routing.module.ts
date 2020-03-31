@@ -25,9 +25,10 @@ const routes: Routes = [
   {path: 'recover', component: RecoverComponent},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'main-register', component: MainRegisterComponent},
+  {path: 'client-profile/:id', component: ProfileComponent, canActivate:[RegisterGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate:[RegisterGuard]},
-  {path: 'client-profile', component: ProfileComponent, canActivate:[RegisterGuard]},
-  {path: 'servicer-profile', component: ProComponent}
+
+  {path: 'servicer-profile', component: ProComponent, canActivate:[RegisterGuard]}
 
 ];
 
