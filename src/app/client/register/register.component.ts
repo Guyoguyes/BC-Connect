@@ -51,8 +51,10 @@ export class RegisterComponent implements OnInit {
       error => console.log('error', error)
 
       )
+      // form.reset()
       this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
-      this.router.navigate(['/login-client'])
+      this.router.navigate(['/login-client']);
+
   }
 
   ngOnInit() {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Register } from '../client/class/register';
 import { Observable, throwError} from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, catchError, tap } from 'rxjs/operators'
 // import { JwtHelperService } from '@auth0/angular-jwt';
 
 
@@ -43,9 +43,24 @@ servicer: any;
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json')
-    return this.http.get(`${this.uri}/client/profile`, {headers: headers})
+    return this.http.get(`${this.uri}/client/profile/${_id}`, {headers: headers})
 
   }
+
+  // getClient(): Observable<Register[]>{
+  //   return this.http.get<Register[]>(`${this.uri}/client/profile`).pipe(
+  //     tap(data => console.log('profile')),
+  //     catchError(this.handleError)
+  //   )
+  // }
+
+  // getClientProfile(id): Observable<Register | undefined>{
+
+  //   return this.getClient().pipe(
+  //     map((client: Register[]) => client.find(c => c.email === id ))
+  //   )
+
+  // }
 
 
 

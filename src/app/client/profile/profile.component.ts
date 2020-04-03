@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from 'src/app/service/register.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Register } from '../class/register';
 
 
@@ -13,22 +13,47 @@ export class ProfileComponent implements OnInit {
 
   // client: Object;
 
-  client:  Register = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    mobile: null,
-    city: '',
-    password: '',
-  } ;
+  // client:  Register = {
+  //   first_name: '',
+  //   last_name: '',
+  //   email: '',
+  //   mobile: null,
+  //   city: '',
+  //   password: '',
+  // } ;
+errorMessage = '';
+client: any = {}
+
+clients : Register;
+
   constructor(private registerService: RegisterService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-  this.registerService.getClientProfile().subscribe(
-    result => console.log('Profile Success', result),
-    error => console.log('Profile error', error)
+  this.registerService.getClientProfile().subscribe(data =>{
+    this.client = data
+  },
+  err =>{
+    console.log(err)
+    return false;
+  }
 
   )}
+//   const param = this.route.snapshot.paramMap.get('id');
+//   if(param){
+//     const id = +param;
+//     this.getClientProfile(id);
+//   }
 
+// }
+
+
+// getClientProfile(id: number){
+//   this.registerService.getClientProfile(id).subscribe({
+//     next: client => this.client = client,
+//     error: err => this.errorMessage = err
+//   })
 }
+
+

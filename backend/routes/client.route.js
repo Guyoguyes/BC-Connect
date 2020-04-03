@@ -80,7 +80,7 @@ router.post('/authenticate', (req, res, next) =>{
 //   res.json({user: req.user});
 // });
 
-router.get('/profile', (req, res, next) =>{
+router.get('/profile/:id', (req, res, next) =>{
   Client.findOne({_id: req.params._id}, (err, client) =>{
     if(!client){
       return res.status(404).json({success: false, msg:'User record not found'})
