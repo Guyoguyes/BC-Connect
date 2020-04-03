@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Register } from '../client/class/register';
-import { Observable} from 'rxjs';
+import { Observable, throwError} from 'rxjs';
+import { map } from 'rxjs/operators'
 // import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 import { RegisterServicer } from '../servicepro/class/register';
 import { LoginCl } from '../client/class/login-cl';
 import { LoginClService } from '../servicepro/class/login-cl-service';
-// import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -37,16 +38,19 @@ servicer: any;
   }
 
   //get client profile
-  getClientProfile(id): Observable<any>{
+  getClientProfile(){
     let headers = new HttpHeaders();
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json')
     return this.http.get(`${this.uri}/client/profile`, {headers: headers})
 
-
-
   }
+
+
+
+
+
 
   //store Client data
   storeClientData(token, client){
@@ -66,10 +70,15 @@ servicer: any;
   //   return !this.jwtHelper.isTokenExpired(token)
   // }
 
+
   loggedIn(){
-    let authToken = localStorage.getItem('access_token');
-    return (authToken !== null) ? true : false;
+    return tokenNotExpired('id_token')
   }
+
+  // loggedIn(){
+  //   let authToken = localStorage.getItem('access_token');
+  //   return (authToken !== null) ? true : false;
+  // }
 
   //logout client
   logOutClient(){
@@ -102,4 +111,16 @@ servicer: any;
     this.authToken = token;
     this.servicer = servicer;
   }
+
+  private handleError(err: HttpErrorResponse) {
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occured: ${err.error.message}`;
+    } else {
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
+  }
+
 }

@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const jwtHelper = require('../config/jwtHelper');
+
 
 
 // import the client model and schema
@@ -74,10 +76,19 @@ router.post('/authenticate', (req, res, next) =>{
   })
 });
 
-router.get('/profile', (req, res, next) => {
-  res.json({client: req.first_name})
-});
+// router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+//   res.json({user: req.user});
+// });
 
+router.get('/profile', (req, res, next) =>{
+  Client.findOne({_id: req.params._id}, (err, client) =>{
+    if(!client){
+      return res.status(404).json({success: false, msg:'User record not found'})
+    }else{
+      return res.status(200).json({success: true, msg: 'client found'})
+    }
+  })
+})
 
 
 //export client route;
