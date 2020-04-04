@@ -43,7 +43,7 @@ servicer: any;
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json')
-    return this.http.get(`${this.uri}/client/profile/${_id}`, {headers: headers})
+    return this.http.get(`${this.uri}/client/profile`, {headers: headers})
 
   }
 
