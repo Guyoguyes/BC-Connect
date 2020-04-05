@@ -45,6 +45,7 @@ servicer: any;
     headers.append('Content-Type', 'application/json')
     return this.http.get(`${this.uri}/client/profile`, {headers: headers})
 
+
   }
 
   // getClient(): Observable<Register[]>{

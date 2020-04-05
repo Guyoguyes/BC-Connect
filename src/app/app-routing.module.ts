@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './client/profile/profile.component';
 import { ProComponent } from './servicepro/pro/pro.component';
 import { RegisterGuard} from './guard/register.guard';
+import { ReqServiceComponent } from './req-service/req-service.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'recover', component: RecoverComponent},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'main-register', component: MainRegisterComponent},
+  {path: 'req-service', component: ReqServiceComponent},
   {path: 'client-profile', component: ProfileComponent, canActivate:[RegisterGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate:[RegisterGuard]},
 

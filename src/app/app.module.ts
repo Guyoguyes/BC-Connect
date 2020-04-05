@@ -25,6 +25,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './client/profile/profile.component';
 import { AuthInterceptor } from './service/authconfig.interceptor';
 import { RegisterGuard } from './guard/register.guard';
+import { ReqServiceComponent } from './req-service/req-service.component';
 
 // export function tokenGetter(){
 //   return localStorage.getItem('access_token')
@@ -44,7 +45,8 @@ import { RegisterGuard } from './guard/register.guard';
     LogComponent,
     ProComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ReqServiceComponent
   ],
   imports: [
     BrowserModule,
