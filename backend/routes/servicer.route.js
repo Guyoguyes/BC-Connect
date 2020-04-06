@@ -6,8 +6,11 @@ const jwt = require('jsonwebtoken');
 
 //import servicer schema
 const Servicer = require('../model/servicer');
+const ClientRoute = require('../routes/client.route')
 const config = require('../config/db')
 
+
+router.use('/clientRoute', ClientRoute)
 
 //register service provider
 router.post('/register-service-provider', (req, res) =>{
@@ -72,6 +75,11 @@ router.post('/authenticate', (req, res, next) =>{
 
 router.get('/profile', (req, res) =>{
   res.send('Profile')
+});
+
+//get request from the client
+router.get('/request', (req, res) =>{
+  
 })
 
 module.exports = router;

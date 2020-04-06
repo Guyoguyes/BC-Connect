@@ -1,4 +1,6 @@
-.card
-{
-  height: 300px;
+.info-page{
+  background-color: rgb(240, 101, 37);
+  width: 600px;
+  height: 30px;
+  margin-left: 400px;
 }

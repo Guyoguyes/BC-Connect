@@ -8,6 +8,7 @@ const jwtHelper = require('../config/jwtHelper');
 
 // import the client model and schema
 const Client = require('../model/client');
+const ServicePro = require('../model/servicer');
 const config = require('../config/db');
 
 //register client
@@ -86,6 +87,27 @@ router.get('/profile/:id', (req, res, next) =>{
       return res.status(404).json({success: false, msg:'User record not found'})
     }else{
       return res.status(200).json({success: true, msg: 'client found'})
+    }
+  })
+})
+
+
+//sending request to the service provider
+router.post('/request-service', (req, res, next) =>{
+  const email = req.body.email;
+  ServicePro.getServicerByEmail(email, (err, servicer) =>{
+    if(err) throw err;
+    if(!servicer){
+     return res.send('The service provider account not found')
+    }else{
+      ServicePro.findOne(req.body.email, (err, servicer) =>{
+        if(err){
+          return res.send(err)
+        }else{
+          return res.status(303)
+                    .set('request')
+        }
+      })
     }
   })
 })

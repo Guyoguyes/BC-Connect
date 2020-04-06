@@ -32,8 +32,8 @@ login_cl: LoginCl = {
     this.registerService.authenticateClient(this.login_cl).subscribe(data => {
       if(data.success){
         this.registerService.storeClientData(data.token, data.client)
-          this.flashMessages.show('You are logged in', {cssClass: 'alert-success', timeout: 3000})
-          this.router.navigate(['client-profile'])
+          this.flashMessages.show('You are logged in', {cssClass: 'alert-success', timeout: 3000});
+          this.router.navigate(['dashboard'])
       }else{
         this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['/login'])
