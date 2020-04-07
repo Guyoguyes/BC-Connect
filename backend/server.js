@@ -3,7 +3,7 @@ const path = require('path');
 const chalk = require('chalk')
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const passport = require('passport')
+const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/db');
 
@@ -23,6 +23,8 @@ mongoose.connection.on('error', (err) =>{
 
 const app = express();
 const port = 3000;
+const http = require('http').Server(app)
+const io  = require('socket.io')(http)
 
 //middleware
 app.use(cors());
@@ -50,8 +52,13 @@ app.get('/', (req, res) =>{
   res.send('hello bluecollar')
 });
 
+
+io.on('connection', (socket) =>{
+  console.log('User Connected')
+})
+
 //Server
-app.listen(port, () =>{
+var server = http.listen(port, () =>{
   console.log(chalk.red('made with love by Guyo'));
-  console.log('Server listening to localhost: '+port)
+  console.log('Server listening to localhost: '+ server.address().port, new Date)
 })
