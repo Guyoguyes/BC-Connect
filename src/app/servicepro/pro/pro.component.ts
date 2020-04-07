@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from 'src/app/service/register.service';
+
 import { Router } from '@angular/router';
 import { RegisterServicer } from '../class/register';
+import { ServicerProviderService } from 'src/app/service/servicer-provider.service';
 
 @Component({
   selector: 'app-pro',
@@ -20,7 +21,7 @@ servicer:  RegisterServicer ={
   password: null
 };
 
-  constructor(private registerService: RegisterService,
+  constructor(private registerService: ServicerProviderService,
               private router: Router) { }
 
   ngOnInit() {

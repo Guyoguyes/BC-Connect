@@ -70,6 +70,19 @@ router.post('/authenticate', (req, res, next) =>{
     }
   })
   })
+});
+
+
+//get all service providers
+router.get('/servicer-list', (req, res) =>{
+  Servicer.find(function(err, data){
+    if(err){
+      res.json(err)
+      console.log(err)
+    }else{
+      console.log(data)
+    }
+  })
 })
 
 

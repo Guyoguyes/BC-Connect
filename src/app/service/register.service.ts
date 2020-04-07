@@ -16,10 +16,10 @@ import { tokenNotExpired } from 'angular2-jwt';
 })
 export class RegisterService {
 
-uri = 'http://localhost:3000';
+uri = 'http://localhost:3000/client';
 authToken: any;
 client: any;
-servicer: any;
+
 
   constructor(private http: HttpClient) { }
 
@@ -27,14 +27,14 @@ servicer: any;
   addClient(register: Register): Observable<any>{
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-   return this.http.post(`${this.uri}/client/register-client`, register, {headers: headers})
+   return this.http.post(`${this.uri}/register-client`, register, {headers: headers})
   }
 
   //authenticate Client
   authenticateClient(login_cl: LoginCl): Observable<any>{
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(`${this.uri}/client/authenticate`, login_cl, {headers: headers})
+    return this.http.post(`${this.uri}/authenticate`, login_cl, {headers: headers})
   }
 
   //get client profile
@@ -43,7 +43,7 @@ servicer: any;
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json')
-    return this.http.get(`${this.uri}/client/profile`, {headers: headers})
+    return this.http.get(`${this.uri}/profile`, {headers: headers})
 
 
   }
@@ -100,33 +100,12 @@ servicer: any;
   logOutClient(){
     this.authToken = null,
     this.client = null,
-    this.servicer = null,
     localStorage.clear();
   }
 
-  //Get service provider profile
-  getSevicerProfile(){
-    this.loadToken();
-    return this.http.get(`${this.uri}/servicer/profile`)
-  }
 
-  //Add service provider
-  addServicer(register: RegisterServicer): Observable<any>{
-    return  this.http.post(`${this.uri}/servicer/register-service-provider`, register)
-  }
 
-  //authenticate Service provider
-  authenticateServicer(login_cl: LoginClService): Observable<any>{
-    return this.http.post(`${this.uri}/servicer/authenticate`, login_cl)
-  }
 
-  //store Servicer data
-  storeServicerData(token, servicer){
-    localStorage.setItem('id_token', servicer);
-    localStorage.setItem('servicer', JSON.stringify(servicer));
-    this.authToken = token;
-    this.servicer = servicer;
-  }
 
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';

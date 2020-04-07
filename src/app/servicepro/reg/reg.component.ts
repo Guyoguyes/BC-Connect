@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { RegisterService } from '../../service/register.service';
 import { RegisterServicer } from '../class/register';
 import { ValidateService } from 'src/app/service/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
+import { ServicerProviderService } from 'src/app/service/servicer-provider.service';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class RegComponent implements OnInit {
   }
 
   constructor(private router: Router,
-              private registerService: RegisterService,
+              private registerService: ServicerProviderService,
               private validateService: ValidateService,
               private flashMessages: FlashMessagesService) {
     // this.createForm();
@@ -40,16 +40,18 @@ export class RegComponent implements OnInit {
     }
 
     //validate email
-    if(!this.validateService.validateEmail(this.register.email)){
+   else if(!this.validateService.validateEmail(this.register.email)){
       this.flashMessages.show('Please use a valid Email', {cssClass: 'alert-danger', timeout: 3000})
+    }else{
+      this.registerService.addServicer(this.register).subscribe(
+        result => console.log('Success', result),
+        error => console.log('error', error)
+      )
+      this.flashMessages.show('Service provider registered successfully', {cssClass: 'alert-success', timeout: 3000});
+      this.router.navigate(['/login-servicer'])
     }
 
-    this.registerService.addServicer(this.register).subscribe(
-      result => console.log('Success', result),
-      error => console.log('error', error)
-    )
-    this.flashMessages.show('Service provider registered successfully', {cssClass: 'alert-success', timeout: 3000});
-    this.router.navigate(['/login-servicer'])
+
   }
 
   ngOnInit() {
