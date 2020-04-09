@@ -5,6 +5,10 @@ import { RegisterServicer } from './../servicepro/class/register';
 import { tokenNotExpired } from 'angular2-jwt';
 import { LoginCl } from '../client/class/login-cl';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,17 +23,13 @@ export class ServicerProviderService {
 
  //Add service provider
  addServicer(register: RegisterServicer): Observable<any>{
-  let headers = new HttpHeaders();
-  headers.append('Content-Type', 'application/json');
-  return  this.http.post(`${this.uri}/register-service-provider`, register, {headers: headers})
+  return  this.http.post(`${this.uri}/register-service-provider`, register, httpOptions)
 
 }
 
 //authenticate Service provider
 authenticateServicer(login: LoginCl): Observable<any>{
-  let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-  return this.http.post(`${this.uri}/authenticate`, login, {headers: headers})
+  return this.http.post(`${this.uri}/authenticate`, login, httpOptions)
 }
 
 loggedIn(){
@@ -38,31 +38,27 @@ loggedIn(){
 
 //Get service provider profile
 getSevicerProfile(){
-    let headers = new HttpHeaders();
-    this.loadToken();
-    headers.append('Authorization', this.authToken);
-    headers.append('Content-Type', 'application/json')
-  return this.http.get(`${this.uri}/profile`, {headers: headers})
+  return this.http.get(`${this.uri}/profile`, {responseType: 'text'})
 }
 
-loadToken(){
-  const token = localStorage.getItem('id_token');
-  this.authToken = token
-}
+// loadToken(){
+//   const token = localStorage.getItem('id_token');
+//   this.authToken = token
+// }
 
 //store Servicer data
-storeServicerData(token, servicer){
-  localStorage.setItem('id_token', servicer);
-  localStorage.setItem('servicer', JSON.stringify(servicer));
-  this.authToken = token;
-  this.servicer = servicer;
-}
+// storeServicerData(token, servicer){
+//   localStorage.setItem('id_token', servicer);
+//   localStorage.setItem('servicer', JSON.stringify(servicer));
+//   this.authToken = token;
+//   this.servicer = servicer;
+// }
 
 //logout client
-logOutClient(){
-  this.authToken = null,
-  this.servicer = null,
-  localStorage.clear();
-}
+// logOutClient(){
+//   this.authToken = null,
+//   this.servicer = null,
+//   localStorage.clear();
+// }
 
 }

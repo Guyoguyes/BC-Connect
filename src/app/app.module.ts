@@ -63,11 +63,7 @@ import { ReqServiceComponent } from './req-service/req-service.component';
     //   }
     // })
   ],
-  providers: [RegisterService, FlashMessagesService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }, RegisterGuard],
+  providers: [RegisterService, FlashMessagesService, AuthInterceptor, RegisterGuard],
   bootstrap: [AppComponent]
 })
 

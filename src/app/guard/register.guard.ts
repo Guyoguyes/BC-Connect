@@ -10,15 +10,12 @@ export class RegisterGuard implements CanActivate {
   constructor(private registerService: RegisterService, private router: Router){
 
   }
-  canActivate(){
-   if(this.registerService.loggedIn()){
-
-     return true;
-   }else{
+  canActivate() {
+   if (!this.registerService.authenticateClient) {
     this.router.navigate(['/main-login']);
     return false;
    }
-
+   return true;
   }
 
 }

@@ -24,6 +24,11 @@ export class RegisterComponent implements OnInit {
     password: null
   }
 
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+
   constructor(private fb: FormBuilder,
               private registerService: RegisterService,
               private validateService: ValidateService,
@@ -46,11 +51,16 @@ export class RegisterComponent implements OnInit {
       this.flashmessages.show('Please use a vaild email', {cssClass: 'alert-danger', timeout: 3000})
     }
 
-    this.registerService.addClient(this.register).subscribe(
-      result => console.log('Client Saved', result),
-      error => console.log('error', error)
+    this.registerService.addClient(this.register).subscribe(data =>{
+      console.log(data);
+      this.isSuccessful = true;
+      this.isSignUpFailed = false;
+    }, err =>{
+      this.errorMessage = err.error.message;
+      this.isSignUpFailed = true;
+    })
 
-      )
+
       // form.reset()
       this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
       this.router.navigate(['/login-client']);

@@ -6,7 +6,7 @@
 <!-- Material form login -->
 
  <!-- Default form register -->
- <form class="text-center border border-light   p-5"   #form='ngForm'>
+ <form class="text-center border border-light   p-5" *ngIf="!isSuccessful"   #form='ngForm'>
   <flash-messages></flash-messages>
 
 

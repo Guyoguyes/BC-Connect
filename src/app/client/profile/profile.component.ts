@@ -13,18 +13,18 @@ export class ProfileComponent implements OnInit {
 
   // client: Object;
 
-  // client:  Register = {
-  //   first_name: '',
-  //   last_name: '',
-  //   email: '',
-  //   mobile: null,
-  //   city: '',
-  //   password: '',
-  // } ;
+  clients:  Register = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    mobile: null,
+    city: '',
+    password: '',
+  } ;
 errorMessage = '';
 client: any = {}
 
-clients : Register;
+// clients : Register;
 
   constructor(private registerService: RegisterService,
               private router: Router,
@@ -32,7 +32,7 @@ clients : Register;
 
   ngOnInit() {
   this.registerService.getClientProfile().subscribe(data =>{
-    this.client = data
+    this.clients = data
   },
   err =>{
     console.log(err)
