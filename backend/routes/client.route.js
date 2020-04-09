@@ -3,7 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const jwtHelper = require('../config/jwtHelper');
-
+const autJwt = require('../middleware/authJwt')
+const _ = require('lodash')
 
 
 // import the client model and schema
@@ -93,15 +94,19 @@ router.post('/authenticate', (req, res, next) =>{
 //   })
 // })
 
-router.get('/profile', (req, res) =>{
-  // Client.findOne(req.body.email, (err, client) =>{
-  //   if(err){
-  //     res.json({success: false, msg: 'Profile cannot be found'})
-  //   }
-  //   if(!client){
-  //     res.json({success: false, msg: 'Client/user cannot be found'})
-  //   }
-  // })
+// router.get('/profile',autJwt, (req, res) =>{
+//  res.status(200).send("User Content")
+// })
+
+router.get('profile', (req, res, next) =>{
+  Client.findOne({_id: req._id}, (err, client) =>{
+    if(err) throw err;
+    if(!client){
+      return res.status(404).json({status: false, msg: 'client profile'})
+    }else{
+      return res.status(200).json({status: true, client: _.pick(client,['first_name', 'last_name'])})
+    }
+  })
 })
 
 

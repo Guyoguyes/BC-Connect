@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from 'src/app/service/register.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Register } from '../class/register';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 
 @Component({
@@ -28,11 +29,16 @@ client: any = {}
 
   constructor(private registerService: RegisterService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
   this.registerService.getClientProfile().subscribe(data =>{
-    this.clients = data
+    if (data) {
+      this.clients = data.clients;
+    } else {
+      console.log(this.errorMessage)
+    }
   },
   err =>{
     console.log(err)
