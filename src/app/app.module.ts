@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RegisterService } from './service/register.service';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
-import { JwtModule } from '@auth0/angular-jwt';
+
 
 
 

@@ -12,7 +12,7 @@ import { Register } from '../client/class/register';
 })
 export class NavbarComponent implements OnInit {
 
-  isLoggedIn = false;
+  isLoggedIn = true;
   showRoutes = false;
   Username : Register ={
     first_name : null,
@@ -29,11 +29,15 @@ export class NavbarComponent implements OnInit {
               private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
-    this.isLoggedIn == !!this.tokenStorageService.getToken();
+    // this.registerService.loggedIn() == !this.tokenStorageService.getToken();
 
-    if (this.isLoggedIn) {
+    // if (this.isLoggedIn) {
+    //   const user = this.tokenStorageService.getUser();
+    //   this.Username = user.Username;
+    // }
+    if(this.tokenStorageService.getToken()){
       const user = this.tokenStorageService.getUser();
-      this.Username = user.Username
+      this.Username = user.Username;
     }
   }
 

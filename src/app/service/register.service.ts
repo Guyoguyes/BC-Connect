@@ -46,9 +46,9 @@ client: any;
 
 
 
-  // loggedIn(){
-  //   return tokenNotExpired('id_token')
-  // }
+  loggedIn(){
+    return tokenNotExpired('id_token')
+  }
 
 
 
