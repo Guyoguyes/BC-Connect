@@ -43,6 +43,15 @@ const clientRoute = require('./routes/client.route');
 //import service provider route
 const serviceprovider = require('./routes/servicer.route');
 
+//error handler
+app.use((err, req, res, next) =>{
+  if(err.name === 'ValidationError'){
+    var valError = [];
+    Object.keys(err.errors).forEach(key => valError.push(err.err[key].message));
+    res.status(422).send(valError)
+  }
+})
+
 app.use('/client', clientRoute);
 
 app.use('/servicer', serviceprovider)
