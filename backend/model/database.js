@@ -5,6 +5,7 @@ require('../config/config')
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true
 }, (err) =>{
   if(!err){
     console.log('Database Connected: '+process.env.MONGODB_URI)

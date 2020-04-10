@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   // angForm: FormGroup;
 
+
   register: Register = {
     first_name: null,
     last_name: null,
@@ -24,9 +25,8 @@ export class RegisterComponent implements OnInit {
     password: null
   }
 
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
+  isSuccessful: boolean;
+  errorMessage;
 
 
   constructor(private fb: FormBuilder,
@@ -51,19 +51,24 @@ export class RegisterComponent implements OnInit {
       this.flashmessages.show('Please use a vaild email', {cssClass: 'alert-danger', timeout: 3000})
     }
 
-    this.registerService.addClient(this.register).subscribe(data =>{
-      console.log(data);
-      this.isSuccessful = true;
-      this.isSignUpFailed = false;
-    }, err =>{
-      this.errorMessage = err.error.message;
-      this.isSignUpFailed = true;
-    })
+    this.registerService.addClient(this.register).subscribe(
+      res => {
+        this.isSuccessful = true;
+        this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
+        this.router.navigate(['/login-client']);
+      },
+      err =>{
+        if(err.status === 422){
+          this.errorMessage = this.flashmessages.show(err.error)
+        }else{
+          this.errorMessage = this.flashmessages.show('Something went wrong, Please contact the admin')
+        }
+      }
+    )
 
 
       // form.reset()
-      this.flashmessages.show('Client Registered successfully', {cssClass: 'alert-success', timeout: 3000});
-      this.router.navigate(['/login-client']);
+
 
   }
 

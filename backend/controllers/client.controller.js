@@ -15,8 +15,8 @@ module.exports.register = (req, res, next) =>{
 
  //save user
  Client.addClient(newClient, (err, data) => {
-  if(err){
-    res.json({sucess: false, msg:'Client not registered'})
+  if(!err){
+    res.json({sucess: true, msg:'Client registered'})
   }else{
     if(err.code === 11000){
       res.status(422).send(['Duplicate email address found'])

@@ -17,10 +17,12 @@ module.exports.register = (req, res, next) =>{
   });
 
   Servicer.addServicer(newServicer, (err, data) =>{
-    if(err){
-      res.json({success: false, msg:'failed to register'})
+    if(!err){
+      res.json({success: true, msg:'registered succeffully'})
     }else{
-      res.json({success: true, msg:'registered succefully'})
+      if(err.code === 11000){
+        res.status(422).send(['Duplicate email address found'])
+      }
     }
   })
 };

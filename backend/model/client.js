@@ -13,7 +13,8 @@ const ClientShema = mongoose.Schema({
   },
   email:{
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   mobile:{
     type: Number,
