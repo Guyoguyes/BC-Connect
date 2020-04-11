@@ -1,6 +1,6 @@
 .hero
 {
-  background-color: rgb(30,144,255);
+  background-color: #0F93FE;
   height: 700px;
   margin-top: -60px;
 
@@ -32,8 +32,8 @@
  .check-out{
    height: 50px;
    width: 200px;
-   background-color: yellow;
-   border: 1px solid yellow;
+   background-color:#DEFF4F;
+   border: 1px solid #DEFF4F;
    border-radius: 50px;
    margin-left: 350px;
    color: rgb(30,144,255);
@@ -43,3 +43,67 @@
   height: 80px;
   font-size: 150%;
  }
+ .join-us{
+   padding-left: 600px;
+   margin-top: 50px;
+   color: teal;
+
+ }
+ .join-us h3{
+  font-size: 45px;
+ }
+ .about-us{
+   margin-top: 80px;
+   padding-left: 220px;
+   background-color: #DEFF4F;
+   height: 350px;
+ }
+.about-us h2{
+  text-align: center;
+  margin-left: -150px;
+  padding-top: 40px;
+  color: #0F93FE;
+  font-size: 32px;
+}
+.about-us h6{
+  margin-top: -70px;
+  color: #0F93FE;
+  font-size: 24px;
+}
+.vl {
+  border-left: 2px solid #0F93FE;
+  height: 70px;
+  margin-left: -50px;
+  margin-top: 50px;
+}
+.services{
+  padding-left: 170px;
+}
+.services h2{
+  text-align: center;
+  font-size: 32;
+  padding-top: 50px;
+  margin-left: -110px;
+  color:#0F93FE ;
+}
+.services img{
+  padding-top: 40px;
+  width: 300px;
+  height: 200px;
+}
+.services h6{
+  color: #0F93FE;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 20px;
+  margin-left: -120px;
+}
+.testimonials{
+  background-color: #DEFF4F;
+  height: 400px;
+  
+}
+/* .carousel-item img{
+  height: 200px;
+  width: 30px;
+} */
