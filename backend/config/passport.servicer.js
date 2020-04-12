@@ -1,24 +1,20 @@
-const jwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy
 
-const Servicer = require('../model/servicer')
-const config = require('../config/db');
+const Servicer = require('../model/servicer');
 
-module.exports = function(passport){
-    let opts = {};
-    opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-    opts.secretOrKey = config.secret;
-    passport.use(new jwtStrategy(opts, (jwt_payload, done) =>{
-        Servicer.getServicerById(jwt_payload._id, (err, client) =>{
-            if(err){
-                return done(err, false)
-            }
-            if(client){
-                return done(null, client)
-            }
-            else{
-                return done(null, false)
-            }
-        })
-    }))
-}
+passport.use(
+  new localStrategy({usernameField: 'email'}, (email, password, done) =>{
+    Servicer.findOne({email:email}, (err, servicer) =>{
+      if(err){
+        return done(null)
+      }else if(!servicer){
+        return done(null, false, {message: 'Email not registered'})
+      }else if(!servicer.verifyPassword(password)){
+        return done(null, false, {message: 'Wrong Password'})
+      }else {
+        return done(null, servicer)
+      }
+    })
+  })
+)

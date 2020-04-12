@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const lodash = require('lodash')
 
 
 //import servicer schema
 const Servicer = require('../model/servicer');
 
 module.exports.register = (req, res, next) =>{
-  let newServicer = new Servicer({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    mobile: req.body.mobile,
-    city: req.body.city,
-    service: req.body.service,
-    password: req.body.password
-  });
+  let newServicer = new Servicer();
+  newServicer.first_name= req.body.first_name,
+  newServicer.last_name= req.body.last_name,
+  newServicer.email= req.body.email,
+  newServicer.mobile= req.body.mobile,
+  newServicer.city= req.body.city,
+  newServicer.service= req.body.service,
+  newServicer.password= req.body.password
 
-  Servicer.addServicer(newServicer, (err, data) =>{
+  newServicer.save((err, data) =>{
     if(!err){
       res.json({success: true, msg:'registered succeffully'})
     }else{
@@ -28,31 +29,23 @@ module.exports.register = (req, res, next) =>{
 };
 
 module.exports.authenticate = (req, res, next) =>{
-  const email = req.body.email;
-  const password = req.body.password;
+  passport.authenticate('local', (err, servicer, info) =>{
+    if(err){
+      return res.status(400).json(err)
+    }else if(servicer){
+      return res.status(200).json({'token': servicer.generateJwt()})
+    }else{
+      return res.status(404).json(info)
+    }
+  })(req, res)
+}
 
-  Servicer.getServicerByEmail(email, (err, servicer) =>{
-    if(err) throw err;
+module.exports.servicerProfile = (req, res, next) =>{
+  Servicer.findOne({_id: req._id}, (err, servicer) =>{
     if(!servicer){
-      return res.json({success: false, msg:'User not found'})
+      return res.status(404).json({status: false, messsage:'User record not found'})
+    }else{
+      return res.status(200).json({status: true, servicer: lodash.pick(servicer, ['first_name', 'last_name', 'email', 'mobile', 'service'])})
     }
-  Servicer.comparePassword(password, servicer.password, (err, isMatch) =>{
-    if(err) throw err;
-    if(isMatch){
-      const token = jwt.sign(servicer.toJSON(), config.secret2, {
-        expiresIn: 604000 //1 week
-      });
-      res.json({
-        success: true,
-        token: 'JWT' + token,
-        servicer: {
-          id: servicer._id,
-          first_name: servicer.first_name,
-          last_name: servicer.last_name,
-          service: servicer.service
-        }
-      })
-    }
-  })
   })
 }

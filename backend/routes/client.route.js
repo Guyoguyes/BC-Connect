@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrlClient = require('../controllers/client.controller')
+const ctrlClient = require('../controllers/client.controller');
+const jwtHelper = require('../config/jwtHelper')
 
 
 
@@ -16,6 +17,9 @@ router.post('/register-client', ctrlClient.register );
 
 //authenicate client
 router.post('/authenticate', ctrlClient.authenticate);
+
+//client profile
+router.get('/client-profile', jwtHelper.verifyJwtoken, ctrlClient.clientProfile)
 
 
 

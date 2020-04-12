@@ -1,10 +1,9 @@
-
-<div class="row">
-  <div class="col-md-6">
-    <app-register></app-register>
-  </div>
-  <div class="col-md-6">
-    <app-reg></app-reg>
+<div class="wrapper ">
+  <h2>Sign-Up</h2>
+  <div id="formContent">
+    <h2 class=" underlineHover" routerLink='/register-client' routerLinkActive='active'>Client</h2>
+    <h2 class=" underlineHover" routerLink='/register-servicer' routerLinkActive='active'>Service-provider</h2>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

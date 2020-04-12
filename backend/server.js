@@ -1,5 +1,7 @@
 require('./config/config');
-require('./model/database')
+require('./model/database');
+require('./config/passport.client')
+require('./config/passport.servicer')
 
 const express = require('express');
 const path = require('path');
@@ -22,10 +24,10 @@ app.use(bodyParser.json());
 
 //passport Midleware
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
-require('./config/passport.client')(passport);
-require('./config/passport.servicer')(passport);
+// require('./config/passport.client')(passport);
+// require('./config/passport.servicer')(passport);
 
 //import client route
 const clientRoute = require('./routes/client.route');

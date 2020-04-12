@@ -46,7 +46,7 @@
  .join-us{
    padding-left: 600px;
    margin-top: 50px;
-   color: teal;
+   color: #4FFBDF;
 
  }
  .join-us h3{
@@ -100,8 +100,15 @@
 }
 .testimonials{
   background-color: #DEFF4F;
-  height: 400px;
-  
+  height: 500px;
+  margin-top: 300px;
+
+}
+.carousel-inner {
+  width: 400px;
+  height: 600px;
+  padding-top: 100px;
+  margin-left: 350px;
 }
 /* .carousel-item img{
   height: 200px;

@@ -1,58 +1,71 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 // const Schema = mongoose.Schema();
 
 const ClientShema = mongoose.Schema({
   first_name:{
     type: String,
-    required: true
+    required: 'First Name can\'t be empty'
   },
   last_name:{
     type: String,
-    required: true
+    required: 'Last Name can\'t be empty'
   },
   email:{
     type: String,
-    required: true,
+    required:  'Email can\'t be empty',
     unique: true
   },
   mobile:{
     type: Number,
-    required: true
+    required: 'Phone can\'t be empty'
   },
   city:{
     type: String,
-    require: true
+    require: 'address can\'t be empty'
   },
   password:{
     type: String,
-    required: true
-  }
+    required: 'Password can\'t be empty'
+  },
+  saltSecret: String
 });
 
-const Client = module.exports = mongoose.model('client', ClientShema);
+ClientShema.path('email').validate((val) =>{
+  emailRegex =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailRegex.test(val)
+}, 'Invalid email');
 
-module.exports.getClientById = function(id, callback){
-    Client.findById(id, callback)
-}
-
-module.exports.getClientByEmail = function(email, callback){
-  const query = {email : email}
-  Client.findOne(query, callback)
-}
-
-module.exports.addClient = function(newClient, callback){
+ClientShema.pre('save', function(next){
   bcrypt.genSalt(10, (err, salt) =>{
-    bcrypt.hash(newClient.password, salt, (err, hash) =>{
-      newClient.password = hash;
-      newClient.save(callback)
+    bcrypt.hash(this.password, salt, (err, hash) =>{
+      this.password = hash;
+      this.saltSecret = salt;
+      next()
     })
   })
+})
+
+ClientShema.methods.verifyPassword = function (password){
+  return bcrypt.compareSync(password, this.password)
 };
 
-module.exports.comparePassword = function(candidatePassword, hash, callback){
-  bcrypt.compare(candidatePassword, hash, (err, isMatch) =>{
-    if(err) throw err;
-    callback(null, isMatch)
+ClientShema.methods.generateJwt = function (){
+  return jwt.sign({_id: this._id}, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXP
   })
 }
+
+ module.exports = mongoose.model('client', ClientShema);
+
+
+
+
+
+// module.exports.comparePassword = function(candidatePassword, hash, callback){
+//   bcrypt.compare(candidatePassword, hash, (err, isMatch) =>{
+//     if(err) throw err;
+//     callback(null, isMatch)
+//   })
+// }
