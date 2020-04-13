@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterService } from './service/register.service';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
@@ -63,7 +63,11 @@ import { ReqServiceComponent } from './req-service/req-service.component';
     //   }
     // })
   ],
-  providers: [RegisterService, FlashMessagesService, AuthInterceptor, RegisterGuard],
+  providers: [RegisterService, FlashMessagesService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, RegisterGuard],
   bootstrap: [AppComponent]
 })
 

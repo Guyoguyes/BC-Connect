@@ -5,6 +5,7 @@ import { ValidateService } from 'src/app/service/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ServicerProviderService } from 'src/app/service/servicer-provider.service';
+import { RegisterService } from 'src/app/service/register.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class RegComponent implements OnInit {
   }
 
   constructor(private router: Router,
-              private registerService: ServicerProviderService,
+              private registerService: RegisterService,
               private validateService: ValidateService,
               private flashMessages: FlashMessagesService) {
     // this.createForm();

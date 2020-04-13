@@ -11,7 +11,7 @@ export class RegisterGuard implements CanActivate {
 
   }
   canActivate() {
-   if (!this.registerService.authenticateClient) {
+   if (!this.registerService.authenticateClient || !this.registerService.authenticateServicer) {
     this.router.navigate(['/main-login']);
     return false;
    }

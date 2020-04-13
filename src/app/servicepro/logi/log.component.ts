@@ -8,7 +8,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ServicerProviderService } from 'src/app/service/servicer-provider.service';
 import { RegisterServicer } from 'src/app/servicepro/class/register';
 import { LoginCl } from 'src/app/client/class/login-cl';
-import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { RegisterService } from 'src/app/service/register.service';
+
 
 @Component({
   selector: 'app-log',
@@ -22,31 +23,25 @@ export class LogComponent implements OnInit {
     password: null,
   }
 
-  constructor(private registerService: ServicerProviderService,
+  constructor(private registerService: RegisterService,
               private router: Router,
               private flashMessages: FlashMessagesService,
-              private tokenStorage: TokenStorageService) { }
+              ) { }
 
   ngOnInit() {
+    if(this.registerService.isLoggedIn()){
+      this.router.navigateByUrl('/servicer-profile')
+    }
   }
 
   onLogin(form: NgForm){
-    this.registerService.authenticateServicer(this.login).subscribe(data => {
-      if(data.success){
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-        this.flashMessages.show('you are logged in', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['dashboard']);
-      } else {
-        this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
-        this.reloadPage();
-      }
-    }
-
+    this.registerService.authenticateServicer(this.login).subscribe(
+      res => {
+        this.registerService.setToken(res['token']);
+        this.router.navigateByUrl('/servicer-profile')
+      },
+      err => {}
     )
-  }
-  reloadPage(){
-    window.location.reload();
-  }
 
+}
 }

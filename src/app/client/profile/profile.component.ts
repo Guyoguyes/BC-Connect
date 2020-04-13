@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from 'src/app/service/register.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Register } from '../class/register';
-import { TokenStorageService } from 'src/app/service/token-storage.service';
+
 
 
 @Component({
@@ -22,30 +22,25 @@ export class ProfileComponent implements OnInit {
     city: '',
     password: '',
   } ;
-errorMessage = '';
-client: any = {}
+
 
 // clients : Register;
 
   constructor(private registerService: RegisterService,
               private router: Router,
               private route: ActivatedRoute,
-              private tokenStorageService: TokenStorageService) { }
+              ) { }
 
   ngOnInit() {
-  this.registerService.getClientProfile().subscribe(data =>{
-    if (data) {
-      this.clients = data.clients;
-    } else {
-      console.log(this.errorMessage)
-    }
-  },
-  err =>{
-    console.log(err)
-    return false;
+    this.registerService.getClientProfile().subscribe(
+      res => {
+        this.clients = res['client']
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
-
-  )}
 //   const param = this.route.snapshot.paramMap.get('id');
 //   if(param){
 //     const id = +param;
@@ -56,7 +51,7 @@ client: any = {}
 
 
 // getClientProfile(id: number){
-//   this.registerService.getClientProfile(id).subscribe({
+// thi  this.registerService.getClientProfile(id).subscribe({
 //     next: client => this.client = client,
 //     error: err => this.errorMessage = err
 //   })
