@@ -9,6 +9,7 @@ const chalk = require('chalk')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const morgan = require('morgan')
 
 
 
@@ -19,7 +20,8 @@ const io  = require('socket.io')(http)
 
 //middleware
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(morgan('dev'))
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 //passport Midleware
@@ -33,12 +35,13 @@ app.use(passport.initialize());
 const clientRoute = require('./routes/client.route');
 //import service provider route
 const serviceprovider = require('./routes/servicer.route');
-
+//import order router
+const orderRoute = require('./routes/order.router')
 
 
 app.use('/client', clientRoute);
-
-app.use('/servicer', serviceprovider)
+app.use('/servicer', serviceprovider);
+app.use('/order', orderRoute);
 
 //Route
 app.get('/', (req, res) =>{

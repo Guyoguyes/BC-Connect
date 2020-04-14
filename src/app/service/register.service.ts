@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Register } from '../client/class/register';
-import { Observable, throwError} from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators'
+import {throwError} from 'rxjs';
+import { environment } from '../../environments/environment'
+
 // import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { LoginCl } from '../client/class/login-cl';
@@ -16,7 +17,7 @@ import { RegisterServicer } from '../servicepro/class/register';
 })
 export class RegisterService {
 
-uri = 'http://localhost:3000';
+
 
 noAuthHeader = { headers: new HttpHeaders({ 'noAuth': 'True'})}
 
@@ -24,36 +25,36 @@ noAuthHeader = { headers: new HttpHeaders({ 'noAuth': 'True'})}
 
   //Add client
   addClient(register: Register){
-    return this.http.post(`${this.uri}/client/register-client`, register, this.noAuthHeader);
+    return this.http.post( environment.apiBaseUrl + '/client/register-client', register, this.noAuthHeader);
   }
 
   //authenticate Client
   authenticateClient(login_cl: LoginCl){
-    return this.http.post(`${this.uri}/client/authenticate`, login_cl, this.noAuthHeader);
+    return this.http.post( environment.apiBaseUrl + '/client/authenticate', login_cl, this.noAuthHeader);
   }
 
 
 
   getClientProfile(){
-    return this.http.get(`${this.uri}/client/client-profile`);
+    return this.http.get(environment.apiBaseUrl + '/client/profile');
   }
 
 //Service Provider
 
   addServicer(register: RegisterServicer){
-    return  this.http.post(`${this.uri}/servicer/register-service-provider`, register, this.noAuthHeader)
+    return  this.http.post(environment.apiBaseUrl + '/servicer/register-service-provider', register, this.noAuthHeader)
 
   }
 
   //authenticate Service provider
   authenticateServicer(login: LoginCl){
-    return this.http.post(`${this.uri}/servicer/authenticate`, login)
+    return this.http.post(environment.apiBaseUrl + '/servicer/authenticate', login)
   }
 
 
   //Get service provider profile
   getSevicerProfile(){
-    return this.http.get(`${this.uri}/servicer/profile`)
+    return this.http.get(environment.apiBaseUrl + '/servicer/profile')
   }
 
 

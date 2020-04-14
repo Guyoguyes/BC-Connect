@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'client-profile', component: ProfileComponent, canActivate:[RegisterGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate:[RegisterGuard]},
 
-  {path: 'servicer-profile', component: ProComponent}
+  {path: 'servicer-profile', component: ProComponent, canActivate:[RegisterGuard]}
 
 ];
 

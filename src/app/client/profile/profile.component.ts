@@ -13,22 +13,22 @@ import { Register } from '../class/register';
 export class ProfileComponent implements OnInit {
 
   // client: Object;
+  serverErrorMessage: string;
 
   clients:  Register = {
-    first_name: '',
-    last_name: '',
-    email: '',
+    first_name: null,
+    last_name: null,
+    email: null,
     mobile: null,
-    city: '',
-    password: '',
+    city: null,
+    password: null,
   } ;
 
 
 // clients : Register;
 
   constructor(private registerService: RegisterService,
-              private router: Router,
-              private route: ActivatedRoute,
+
               ) { }
 
   ngOnInit() {
@@ -41,20 +41,7 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
-//   const param = this.route.snapshot.paramMap.get('id');
-//   if(param){
-//     const id = +param;
-//     this.getClientProfile(id);
-//   }
 
-// }
-
-
-// getClientProfile(id: number){
-// thi  this.registerService.getClientProfile(id).subscribe({
-//     next: client => this.client = client,
-//     error: err => this.errorMessage = err
-//   })
 }
 
 

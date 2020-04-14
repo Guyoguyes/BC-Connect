@@ -1,1 +1,31 @@
-<p>pro works!</p>
+<table *ngIf="servicer" class="table-fill">
+  <thead>
+    <tr>
+      <th colspan="2" class="text-center">Welcome {{servicer.first_name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First Name</td>
+      <td>{{servicer.first_name}}</td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td>{{servicer.last_name}}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{servicer.email}}</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>{{servicer.city}}</td>
+    </tr>
+
+    <tr>
+      <td>Service</td>
+      <td>{{servicer.service}}</td>
+    </tr>
+
+  </tbody>
+</table>

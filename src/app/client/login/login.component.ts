@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 
 
 login_cl: LoginCl = {
-  email: '',
-  password: '',
+  email: null,
+  password: null,
 }
 
 isLoggedIn = false;

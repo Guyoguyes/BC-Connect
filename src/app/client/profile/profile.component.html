@@ -1,12 +1,31 @@
+<table *ngIf="clients" class="table-fill">
+  <thead>
+    <tr>
+      <th colspan="2" class="text-center">Welcome {{clients.first_name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First Name</td>
+      <td>{{clients.first_name}}</td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td>{{clients.last_name}}</td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td>{{clients.email}}</td>
+    </tr>
 
+    <tr>
+      <td>Address</td>
+      <td>{{clients.city}}</td>
+    </tr>
 
+  </tbody>
+</table>
 
-
-<div *ngIf='clients'>
-    <h2 class="page-header">{{clients.first_name}} {{clients.last_name}}</h2>
-    <ul class="list-group">
-        <li class="list-group-item">Email: {{clients.email}}</li>
-        <li class="list-group-item">Address: {{clients.city}}</li>
-        <li class="list-group-item">Phone: {{clients.mobile}}</li>
-    </ul>
+<div>
+  {{serverErrorMessage}}
 </div>

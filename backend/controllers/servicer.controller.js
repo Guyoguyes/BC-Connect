@@ -49,3 +49,26 @@ module.exports.servicerProfile = (req, res, next) =>{
     }
   })
 }
+
+module.exports.servicerDashboard = (req, res, next) =>{
+  Servicer.find(function (err, servicer){
+    if(err){
+      res.status(404).json({status: false, messsage:'Servicers Not found'})
+    }else{
+      res.json(servicer)
+    }
+  })
+}
+
+
+//to be deleted
+//used for testing purpose of the api
+module.exports.getServicer = (req, res, next) =>{
+  Servicer.find(function(err, servicer){
+    if(err){
+      res.status(400).json(err)
+    }else{
+      res.status(200).json(servicer)
+    }
+  })
+}
