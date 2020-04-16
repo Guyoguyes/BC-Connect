@@ -37,6 +37,7 @@ noAuthHeader = { headers: new HttpHeaders({ 'noAuth': 'True'})}
 
   getClientProfile(){
     return this.http.get(environment.apiBaseUrl + '/client/profile');
+  
   }
 
 //Service Provider

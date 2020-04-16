@@ -21,11 +21,7 @@ login_cl: LoginCl = {
   password: null,
 }
 
-isLoggedIn = false;
-isLoginFailed = false;
-errorMessage = '';
-
-
+ser
 
   constructor(private registerService: RegisterService,
               private router: Router,
@@ -47,7 +43,7 @@ errorMessage = '';
         this.router.navigateByUrl('/client-profile')
       },
       err => {
-        console.log(err)
+        this.flashMessages.show(err, {cssClass: 'alert-danger', timeout: 3000})
       }
     );
   }

@@ -18,6 +18,8 @@ import { RegisterService } from 'src/app/service/register.service';
 })
 export class LogComponent implements OnInit {
 
+  serverErrorMessage: string;
+
   login: LoginCl ={
     email: null,
     password: null,
@@ -40,7 +42,9 @@ export class LogComponent implements OnInit {
         this.registerService.setToken(res['token']);
         this.router.navigateByUrl('/servicer-profile')
       },
-      err => {}
+      err => {
+        
+      }
     )
 
 }

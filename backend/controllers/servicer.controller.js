@@ -36,6 +36,7 @@ module.exports.authenticate = (req, res, next) =>{
       return res.status(200).json({'token': servicer.generateJwt()})
     }else{
       return res.status(404).json(info)
+      console.log(err)
     }
   })(req, res)
 }

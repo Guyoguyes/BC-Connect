@@ -30,9 +30,10 @@ module.exports.authenticate = (req, res, next) =>{
     if(err){
       return res.status(400).json(err)
     }else if(client){
-      return res.status(200).json({"token": client.generateJwt()})
+      return res.status(200).json({'token': client.generateJwt()})
     }else{
       return res.status(404).json(info)
+      console.log(err)
     }
   })(req, res);
 };
