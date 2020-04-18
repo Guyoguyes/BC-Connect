@@ -20,7 +20,7 @@ router.get('/profile', jwtHelper.verifyJwtoken, ctrlClient.clientProfile);
 
 //to be deleted
 //used for a test of the api purpose
-router.get('/', ctrlClient.getClient);
+// router.get('/', ctrlClient.getClient);
 
 
 

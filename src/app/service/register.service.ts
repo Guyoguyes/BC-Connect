@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Register } from '../client/class/register';
-import {throwError} from 'rxjs';
+import {throwError, Observable} from 'rxjs';
 import { environment } from '../../environments/environment'
 
 // import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { LoginCl } from '../client/class/login-cl';
 import { RegisterServicer } from '../servicepro/class/register';
+import { tap } from 'rxjs/internal/operators/tap';
 
 
 
@@ -34,10 +35,10 @@ noAuthHeader = { headers: new HttpHeaders({ 'noAuth': 'True'})}
   }
 
 
-
+  // Client Profile
   getClientProfile(){
     return this.http.get(environment.apiBaseUrl + '/client/profile');
-  
+
   }
 
 //Service Provider
@@ -49,7 +50,7 @@ noAuthHeader = { headers: new HttpHeaders({ 'noAuth': 'True'})}
 
   //authenticate Service provider
   authenticateServicer(login: LoginCl){
-    return this.http.post(environment.apiBaseUrl + '/servicer/authenticate', login)
+    return this.http.post(environment.apiBaseUrl + '/servicer/authenticate', login, this.noAuthHeader)
   }
 
 
@@ -58,6 +59,9 @@ noAuthHeader = { headers: new HttpHeaders({ 'noAuth': 'True'})}
     return this.http.get(environment.apiBaseUrl + '/servicer/profile')
   }
 
+  getServiceProviders(){
+    return this.http.get(environment.apiBaseUrl + '/servicer')
+  }
 
   //Helper Method (TOKENS)
 

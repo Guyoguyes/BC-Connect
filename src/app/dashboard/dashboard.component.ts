@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicerProviderService } from '../service/servicer-provider.service';
 import { RegisterServicer } from '../servicepro/class/register';
+import { RegisterService } from '../service/register.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,15 @@ export class DashboardComponent implements OnInit {
 
   // filteredServicers: RegisterServicer[];
 
-  servicers: RegisterServicer;
+  servicers: RegisterServicer = {
+    first_name: null,
+    last_name: null,
+    email: null,
+    mobile: null,
+    city: null,
+    service: null,
+    password: null
+  };
 
   // performFilter(filterBy: string): RegisterServicer[] {
   //   filterBy = filterBy.toLocaleLowerCase();
@@ -36,15 +45,18 @@ export class DashboardComponent implements OnInit {
   // }
 
 
-  constructor(private servicerService: ServicerProviderService) { }
+  constructor(private servicerService: ServicerProviderService,
+              private registerService: RegisterService) { }
 
   ngOnInit() {
-    this.servicerService.getServicers().subscribe(data =>{
-      if(data){
-        console.log('no error')
+    this.registerService.getServiceProviders().subscribe(
+      res => {
+        this.servicers = this.servicers;
+        console.log('SuccessFul')
+      },
+      err =>{
+        console.log(err)
       }
-    }
-
     )
     // this.servicerService.getServicers().subscribe(
     //   servicers => {

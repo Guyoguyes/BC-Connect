@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const Client = require('../model/client');
-const lodash = require('lodash');
+const jwt = require('jsonwebtoken')
 const passport = require('passport');
-const Servicer = require('../model/servicer')
+const lodash = require('lodash');
+
+const Client = require('../model/client');
 
 module.exports.register = (req, res, next) =>{
   let newClient = new Client();
@@ -33,7 +34,7 @@ module.exports.authenticate = (req, res, next) =>{
       return res.status(200).json({'token': client.generateJwt()})
     }else{
       return res.status(404).json(info)
-      console.log(err)
+
     }
   })(req, res);
 };
@@ -42,6 +43,7 @@ module.exports.clientProfile = (req, res, next) =>{
   Client.findOne({_id: req._id}, (err, client) =>{
     if(!client){
       return res.status(404).json({status: false, message:'User Record not found'})
+
     }else{
       return res.status(200).json({status: true, client: lodash.pick(client, ['first_name', 'last_name', 'email', 'mobile'])})
     }
