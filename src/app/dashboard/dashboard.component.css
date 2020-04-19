@@ -3,12 +3,16 @@
   height: 350px;
 } */
 .main{
-  margin-top: 150px;
+  padding-left: 30px;
+  width: 500px;
+  height: 300px;
 }
+
 .profile
 {
-  min-height: 355px;
+  min-height:155px;
   display: inline-block;
+
 }
 figcaption.ratings
 {
@@ -31,6 +35,7 @@ figcaption.ratings a:hover
 .emphasis
 {
   border-top: 4px solid transparent;
+  padding-top: -30px;
 }
 .emphasis:hover
 {
