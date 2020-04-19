@@ -27,14 +27,14 @@ module.exports.register = (req, res, next) =>{
 }
 
 module.exports.authenticate = (req, res, next) =>{
-  passport.authenticate('local', (err, client, info) =>{
+  passport.authenticate('client','local', (err, client, info) =>{
     if(err){
       return res.status(400).json(err)
     }else if(client){
       return res.status(200).json({'token': client.generateJwt()})
     }else{
       return res.status(404).json(info)
-
+      console.log(info)
     }
   })(req, res);
 };

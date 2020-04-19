@@ -29,7 +29,7 @@ module.exports.register = (req, res, next) =>{
 };
 
 module.exports.authenticate = (req, res, next) =>{
-  passport.authenticate('local', (err, servicer, info) =>{
+  passport.authenticate('servicer','local', (err, servicer, info) =>{
     if(err){
       return res.status(400).json(err)
     }else if(servicer){

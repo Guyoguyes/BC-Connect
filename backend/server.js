@@ -1,7 +1,9 @@
 require('./config/config');
 require('./model/database');
-require('./config/passport.client')
-require('./config/passport.servicer')
+require('./config/passport');
+// require('./config/passport.servicer')
+// require('./config/passport.client')
+
 
 const express = require('express');
 const path = require('path');
@@ -34,13 +36,13 @@ app.use(passport.initialize());
 //import client route
 const clientRoute = require('./routes/client.route');
 //import service provider route
-const serviceprovider = require('./routes/servicer.route');
+const serviceworker = require('./routes/servicer.route');
 //import order router
 const orderRoute = require('./routes/order.router')
 
 
 app.use('/client', clientRoute);
-app.use('/servicer', serviceprovider);
+app.use('/servicer', serviceworker);
 app.use('/order', orderRoute);
 
 //Route
@@ -65,5 +67,6 @@ app.use((err, req, res, next) =>{
 //Server
 var server = http.listen(process.env.PORT, () =>{
   console.log(chalk.red('made with love by Guyo'));
+  console.log(chalk.blue('Copyrigth @2020 bluecollar'))
   console.log('Server listening to localhost: '+ process.env.PORT, new Date)
 })
