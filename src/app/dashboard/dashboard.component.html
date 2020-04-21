@@ -1,11 +1,11 @@
-<div class="main">
+<div class="main" *ngFor="let service of filteredServicers">
   <div class="card">
 <div class="row">
   <div class="col-md-6">
     <div class="well profile">
 
-          <h2>Nicole Pearson</h2>
-          <p><strong>About: </strong> Web Designer / UI. </p>
+          <h2>{{service.first_name}} {{service.last_name}}</h2>
+          <p><strong>About: </strong> {{service.service}} </p>
           <p><strong>Service </strong>
             <span class="tags">Plumber</span>
           </p>
@@ -69,7 +69,9 @@
           </div>
         </div>
 </div>
-    <!-- </div>
-  </div> -->
 
 
+
+ <!-- <div class="container" *ngFor="let service of servicers">
+  <h2>{{service.first_name}} {{servicers.last_name}}</h2>
+</div> -->

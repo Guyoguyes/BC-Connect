@@ -14,18 +14,19 @@ export class DashboardComponent implements OnInit {
 
   errorMessage: string;
 
-  // _listFilter: string;
+  _listFilter: string;
 
-  // get listFilter(): string {
-  //   return this._listFilter;
-  // }
+  get listFilter(): string {
+    return this._listFilter;
+  }
 
-  // set listFilter(value: string){
-  //   this._listFilter = value;
-  //   this.filteredServicers = this.listFilter ? this.performFilter(this.listFilter) : this.servicers;
-  // }
+  set listFilter(value: string){
+    this._listFilter = value;
+    this.filteredServicers = this.listFilter ? this.performFilter(this.listFilter) : this.servicers;
+  }
 
-  // filteredServicers: RegisterServicer[];
+  filteredServicers: RegisterServicer[];
+
 
   servicers: RegisterServicer = {
     first_name: null,
@@ -37,31 +38,30 @@ export class DashboardComponent implements OnInit {
     password: null
   };
 
-  // performFilter(filterBy: string): RegisterServicer[] {
-  //   filterBy = filterBy.toLocaleLowerCase();
-  //   return this.servicers.filter((servicer : RegisterServicer) =>
-  //     servicer.service.toLocaleLowerCase().indexOf(filterBy) !== -1
-  //   )
-  // }
+  performFilter(filterBy: string): RegisterServicer[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.servicers.filter((servicer : RegisterServicer) =>
+      servicer.service.toLocaleLowerCase().indexOf(filterBy) !== -1
+    )
+  }
+
 
 
   constructor(private servicerService: ServicerProviderService,
               private registerService: RegisterService) { }
 
   ngOnInit() {
-    this.registerService.getServiceProviders().subscribe(
-      res => {
-        this.servicers = this.servicers;
-        console.log('SuccessFul')
-      },
-      err =>{
-        console.log(err)
+    this.servicerService.getServicers().subscribe(
+      servicers => {
+        this.servicers = servicers;
+        this.filteredServicers = this.servicers;
       }
     )
+
     // this.servicerService.getServicers().subscribe(
     //   servicers => {
-    //     // this.servicers = servicers;
-    //     this.filteredServicers = this.servicers;
+    //     this.servicers = servicers;
+    //     // this.filteredServicers = this.servicers;
     //   },
     //   error => this.errorMessage = <any>error
     // )

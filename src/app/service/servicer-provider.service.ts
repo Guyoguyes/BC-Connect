@@ -19,7 +19,7 @@ export class ServicerProviderService {
   constructor(private http: HttpClient) { }
 
 getServicers(){
-  return this.http.get(environment.apiBaseUrl + '/servicer/list')
+  return this.http.get(environment.apiBaseUrl + '/servicer/list');
 }
 
 }
