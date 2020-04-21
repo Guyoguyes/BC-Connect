@@ -6,12 +6,13 @@
   padding-left: 30px;
   width: 500px;
   height: 300px;
+  display: inline;
 }
 
 .profile
 {
   min-height:155px;
-  display: inline-block;
+  float: right;
 
 }
 figcaption.ratings

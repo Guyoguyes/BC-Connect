@@ -25,18 +25,19 @@ export class DashboardComponent implements OnInit {
     this.filteredServicers = this.listFilter ? this.performFilter(this.listFilter) : this.servicers;
   }
 
-  filteredServicers: RegisterServicer[];
+  filteredServicers: RegisterServicer;
 
+  servicers: any
 
-  servicers: RegisterServicer = {
-    first_name: null,
-    last_name: null,
-    email: null,
-    mobile: null,
-    city: null,
-    service: null,
-    password: null
-  };
+  // servicers: RegisterServicer = {
+  //   first_name: null,
+  //   last_name: null,
+  //   email: null,
+  //   mobile: null,
+  //   city: null,
+  //   service: null,
+  //   password: null
+  // };
 
   performFilter(filterBy: string): RegisterServicer[] {
     filterBy = filterBy.toLocaleLowerCase();
