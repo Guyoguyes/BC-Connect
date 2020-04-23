@@ -9,6 +9,7 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
 
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './client/login/login.component';
@@ -55,13 +56,7 @@ import { ReqServiceComponent } from './req-service/req-service.component';
     HttpClientModule,
     ReactiveFormsModule,
     FlashMessagesModule,
-    // JwtModule.forRoot({
-    //   config:{
-    //     tokenGetter: tokenGetter,
-    //     whitelistedDomains:['localhost:3000'],
-    //     blacklistedRoutes:['localhost:3000/serciver/authenticate']
-    //   }
-    // })
+   
   ],
   providers: [RegisterService, FlashMessagesService, {
     provide: HTTP_INTERCEPTORS,

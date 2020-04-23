@@ -62,14 +62,5 @@ module.exports.servicerDashboard = (req, res, next) =>{
 }
 
 
-//to be deleted
-//used for testing purpose of the api
-module.exports.getServicer = (req, res, next) =>{
-  Servicer.find(function(err, servicer){
-    if(err){
-      res.status(400).json(err)
-    }else{
-      res.status(200).json(servicer)
-    }
-  })
-}
+//Get individual service worker
+

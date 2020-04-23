@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'main-register', component: MainRegisterComponent},
   {path: 'req-service', component: ReqServiceComponent},
   {path: 'client-profile', component: ProfileComponent, canActivate:[RegisterGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate:[RegisterGuard]},
+  {path: 'dashboard', component: DashboardComponent},
 
   {path: 'servicer-profile', component: ProComponent, canActivate:[RegisterGuard]}
 

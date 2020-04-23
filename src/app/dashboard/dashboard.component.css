@@ -3,16 +3,17 @@
   height: 350px;
 } */
 .main{
+  float: left;
+  padding: 0 10px;
   padding-left: 30px;
   width: 500px;
   height: 300px;
-  display: inline;
 }
 
 .profile
 {
   min-height:155px;
-  float: right;
+  /* float: right; */
 
 }
 figcaption.ratings

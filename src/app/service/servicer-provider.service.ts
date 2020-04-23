@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {  environment } from '../../environments/environment';
-import { tap } from 'rxjs/operators'
+import { tap } from 'rxjs/operators';
 
 import { RegisterServicer } from './../servicepro/class/register';
-;
+
 
 
 
@@ -18,8 +18,10 @@ export class ServicerProviderService {
 
   constructor(private http: HttpClient) { }
 
-getServicers(){
+getServicers() {
   return this.http.get(environment.apiBaseUrl + '/servicer/list');
 }
+
+
 
 }
