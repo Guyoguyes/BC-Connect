@@ -39,11 +39,14 @@ const clientRoute = require('./routes/client.route');
 const serviceworker = require('./routes/servicer.route');
 //import order router
 const orderRoute = require('./routes/order.router')
+//import customer report route
+const customerReportRoute = require('./routes/customerReport.router');
 
 
 app.use('/client', clientRoute);
 app.use('/servicer', serviceworker);
 app.use('/order', orderRoute);
+app.use('/customerReport', customerReportRoute);
 
 //Route
 app.get('/', (req, res) =>{
