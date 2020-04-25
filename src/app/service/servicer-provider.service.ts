@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {  environment } from '../../environments/environment';
-import { tap } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 import { RegisterServicer } from './../servicepro/class/register';
 
@@ -22,6 +22,10 @@ getServicers() {
   return this.http.get(environment.apiBaseUrl + '/servicer/list');
 }
 
-
+getEachServicer(id: number) {
+  return this.http.get(environment.apiBaseUrl + `/servicer/profile/${id}`).pipe(
+    map((servicer: RegisterServicer[]) => servicer.find(s => s.email ))
+  )
+}
 
 }

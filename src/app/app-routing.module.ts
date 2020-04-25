@@ -13,6 +13,7 @@ import { ProfileComponent } from './client/profile/profile.component';
 import { ProComponent } from './servicepro/pro/pro.component';
 import { RegisterGuard} from './guard/register.guard';
 import { ReqServiceComponent } from './req-service/req-service.component';
+import {InfoProfileComponent} from './info-profile/info-profile.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
   {path: 'req-service', component: ReqServiceComponent},
   {path: 'client-profile', component: ProfileComponent, canActivate:[RegisterGuard]},
   {path: 'dashboard', component: DashboardComponent},
-
+  {path: 'info-profile', component: InfoProfileComponent},
   {path: 'servicer-profile', component: ProComponent, canActivate:[RegisterGuard]}
 
 ];

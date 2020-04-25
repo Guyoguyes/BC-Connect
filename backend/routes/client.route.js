@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const ctrlClient = require('../controllers/client.controller');
-const jwtHelper = require('../config/jwtHelper')
+const jwtHelper = require('../config/jwtHelper');
+
 
 
 

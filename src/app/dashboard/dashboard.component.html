@@ -1,11 +1,11 @@
-<div class="main" *ngFor="let service of filteredServicers">
+<div class="main" *ngFor="let servicer of filteredServicers">
   <div class="card">
 <div class="row">
   <div class="col-md-6">
     <div class="well profile">
 
-          <h2>{{service.first_name}} {{service.last_name}}</h2>
-          <p><strong>About: </strong> {{service.service}} </p>
+          <h2>{{servicer.first_name}} {{servicer.last_name}}</h2>
+          <p><strong>About: </strong> {{servicer.service}} </p>
           <p><strong>Service </strong>
             <span class="tags">Plumber</span>
           </p>
@@ -48,7 +48,7 @@
                   <div class="emphasis">
                     <h2><strong>245</strong></h2>
                     <p><small>Following</small></p>
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
+                    <button class="btn btn-info btn-block" [routerLink]="['/info-profile', servicer.email]"><span class="fa fa-user"></span> View Profile </button>
                   </div>
                 </div>
                 <div class="col-md-6">

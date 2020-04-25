@@ -4,6 +4,7 @@ const passport = require('passport');
 const lodash = require('lodash');
 
 const Client = require('../model/client');
+const ctrlServicer = require('./servicer.controller')
 
 module.exports.register = (req, res, next) =>{
   let newClient = new Client();
@@ -34,7 +35,7 @@ module.exports.authenticate = (req, res, next) =>{
       return res.status(200).json({'token': client.generateJwt()})
     }else{
       return res.status(404).json(info)
-      console.log(info)
+
     }
   })(req, res);
 };
@@ -61,3 +62,6 @@ module.exports.getClient = (req, res, next) =>{
     }
   })
 }
+
+
+//get a servicer and  send a request
