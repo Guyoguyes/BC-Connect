@@ -1,0 +1,71 @@
+<div class="main" *ngFor="let servicer of servicer">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="well profile">
+
+          <h2>{{servicer.first_name}} {{servicer.last_name}}</h2>
+          <p><strong>About: </strong> {{servicer.service}} </p>
+          <p><strong>Service </strong>
+            <span class="tags">Plumber</span>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <figure>
+          <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+          <figcaption class="ratings">
+            <p>Ratings
+              <a href="#">
+                <span class="fa fa-star"></span>
+              </a>
+              <a href="#">
+                <span class="fa fa-star"></span>
+              </a>
+              <a href="#">
+                <span class="fa fa-star"></span>
+              </a>
+              <a href="#">
+                <span class="fa fa-star"></span>
+              </a>
+              <a href="#">
+                <span class="fa fa-star-o"></span>
+              </a>
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+
+
+
+
+    <div class=" divider text-center">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="emphasis">
+            <h2><strong>245</strong></h2>
+            <p><small>Following</small></p>
+<!--            <button class="btn btn-info btn-block" [routerLink]="['/info-profile', servicer.email]"><span class="fa fa-user"></span> View Profile </button>-->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="emphasis">
+            <h2><strong>43</strong></h2>
+            <p><small>Snippets</small></p>
+            <div class="btn-group dropup btn-block">
+
+              <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
